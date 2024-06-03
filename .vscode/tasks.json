@@ -8,7 +8,7 @@
             "label": "build",
             "detail": "Build workspace (default)",
             "type": "shell",
-            "command": "./build.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -19,7 +19,7 @@
             "label": "debug",
             "detail": "Build workspace (debug)",
             "type": "shell",
-            "command": "./build.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh",
             "options": {
                 "env": {
                     "BUILD_TYPE": "Debug"
@@ -33,7 +33,7 @@
             "label": "test",
             "detail": "Run all unit tests and show results.",
             "type": "shell",
-            "command": "./test.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/test.sh",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -58,7 +58,7 @@
             "label": "source",
             "detail": "Source workspace",
             "type": "shell",
-            "command": "source /opt/ros/humble/setup.bash",
+            "command": "source /opt/ros/jazzy/setup.bash",
             "problemMatcher": []
         },
         // Linting and static code analysis tasks
@@ -233,14 +233,14 @@
             "label": "setup",
             "detail": "Set up the workspace",
             "type": "shell",
-            "command": "./setup.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/setup.sh",
             "problemMatcher": []
         },
         {
             "label": "add submodules from .repos",
             "detail": "Create a git submodule for all repositories in your .repos file",
             "type": "shell",
-            "command": "python3 .devcontainer/repos_to_submodules.py",
+            "command": "python3 .devcontainer/scripts/repos_to_submodules.py",
             "problemMatcher": []
         }
     ],

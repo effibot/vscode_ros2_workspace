@@ -1,48 +1,48 @@
-// See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-	"dockerFile": "Dockerfile",
-	"build": {
-		"args": {
-			"WORKSPACE": "${containerWorkspaceFolder}"
-		}
-	},
-	"remoteUser": "ros",
-	"runArgs": [
-		"--network=host",
-		"--cap-add=SYS_PTRACE",
-		"--security-opt=seccomp:unconfined",
-		"--security-opt=apparmor:unconfined",
-		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-		"--volume=/mnt/wslg:/mnt/wslg",
-		"--ipc=host"
-		// uncomment to use intel iGPU
-		// "--device=/dev/dri"
-	],
-	"containerEnv": {
-		"DISPLAY": "${localEnv:DISPLAY}", // Needed for GUI try ":0" for windows
-		"WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
-		"XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
-		"PULSE_SERVER": "${localEnv:PULSE_SERVER}",
-		"LIBGL_ALWAYS_SOFTWARE": "1" // Needed for software rendering of opengl
-	},
-	// Set *default* container specific settings.json values on container create.
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"althack.ament-task-provider",
-				"betwo.b2-catkin-tools",
-				"DotJoshJohnson.xml",
-				"ms-azuretools.vscode-docker",
-				"ms-iot.vscode-ros",
-				"ms-python.python",
-				"ms-vscode.cpptools",
-				"redhat.vscode-yaml",
-				"smilerobotics.urdf",
-				"streetsidesoftware.code-spell-checker",
-				"twxs.cmake",
-				"yzhang.markdown-all-in-one",
-				"zachflower.uncrustify"
-			]
-		}
-	}
+    "name": "vscode_ros2_workspace",
+    "dockerComposeFile": "../docker/compose.yaml",
+    "service": "ros2_jazzy_nvidia",
+    "remoteUser": "ubuntu",
+    "initializeCommand": "",
+    "postCreateCommand": "",
+    "postAttachCommand": "",
+    "updateContentCommand": "",
+    "workspaceFolder": "/ros_ws",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "ms-python.autopep8",                
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "ms-iot.vscode-ros",
+                "althack.ament-task-provider",
+                "zachflower.uncrustify",
+                "aaron-bond.better-comments",
+                "redhat.vscode-yaml",
+                "redhat.vscode-xml",
+                "smilerobotics.urdf",
+                "streetsidesoftware.code-spell-checker",
+                "cschlosser.doxdocgen",
+                "njpwerner.autodocstring",
+                "github.vscode-github-actions",
+                "donjayamanne.githistory",
+                "Gruntfuggly.todo-tree",
+                "betwo.b2-catkin-tools",
+                "DotJoshJohnson.xml",
+                "maptz.regionfolder",
+                "bierner.markdown-preview-github-styles",
+                "DavidAnson.vscode-markdownlint",
+                "darkriszty.markdown-table-prettify",
+                "foxundermoon.shell-format",
+                "mhutchie.git-graph",
+                "Tyriar.sort-lines",
+                "wk-j.save-and-run"
+            ]
+        }
+    }
 }
