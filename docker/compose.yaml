@@ -1,5 +1,5 @@
 services:
-  ros2_jazzy_nvidia:
+  ros2_humble:
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -7,9 +7,9 @@ services:
         - latest
       target: app
       args:
-        - BASE_DOCKER_IMAGE=osrf/ros:jazzy-desktop-full
+        - BASE_DOCKER_IMAGE=osrf/ros:humble-desktop-full
         - WORKSPACE=/ros_ws
-    container_name: ros2_jazzy_nvidia
+    container_name: ros2_humble
     volumes:
       - type: bind
         source: /dev
@@ -25,12 +25,12 @@ services:
       #   source: /mnt/wslg
       #   target: /mnt/wslg
       # uncomment to use intel iGPU
-      # - type: bind
-      #   source: /dev/dri
-      #   target: /dev/dri
-    # privileged: true
-    # network: host
-    runtime: nvidia
+      - type: bind
+        source: /dev/dri
+        target: /dev/dri
+    privileged: true
+    network_mode: host
+    # runtime: nvidia
     ipc: host
     tty: true            
     cap_add:
@@ -44,10 +44,10 @@ services:
     environment:
       - ROS_DOMAIN_ID=1
       - DISPLAY=${DISPLAY}
-      - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_VISIBLE_DEVICES=all
+      #- NVIDIA_DRIVER_CAPABILITIES=all
+      #- NVIDIA_VISIBLE_DEVICES=all
       - QT_X11_NO_MITSHM=1
       - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
-      # - PULSE_SERVER=${PULSE_SERVER}
+      - PULSE_SERVER=${PULSE_SERVER}
     # Overrides default entrypoint so things don't shut down after the process ends.
     command: sleep infinity

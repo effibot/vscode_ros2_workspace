@@ -7,4 +7,21 @@ repositories:
   examples:
     type: git
     url: https://github.com/ros2/examples.git
-    version: jazzy
+    version: humble
+
+  livox_ros_driver2:
+    type: git
+    url: https://github.com/effibot/livox_ros_driver2.git
+    version: humble-devel
+
+  
+  livox_sdk2:
+    type: git
+    url: https://github.com/effibot/Livox-SDK2.git
+    version: master
+
+  lio_livox2:
+    type: git
+    urL: https://github.com/effibot/LIO-Livox2.git
+    version: ros2
+  

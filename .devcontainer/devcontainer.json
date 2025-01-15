@@ -1,8 +1,8 @@
 {
     "name": "vscode_ros2_workspace",
     "dockerComposeFile": "../docker/compose.yaml",
-    "service": "ros2_jazzy_nvidia",
-    "remoteUser": "ubuntu",
+    "service": "ros2_humble",
+    "remoteUser": "ros",
     "initializeCommand": "",
     "postCreateCommand": "",
     "postAttachCommand": "",
@@ -41,7 +41,8 @@
                 "foxundermoon.shell-format",
                 "mhutchie.git-graph",
                 "Tyriar.sort-lines",
-                "wk-j.save-and-run"
+                "wk-j.save-and-run",
+                "github.copilot"
             ]
         }
     }
