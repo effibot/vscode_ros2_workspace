@@ -69,17 +69,6 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
 RUN curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh \
     && echo "eval $(zoxide init bash --cmd cd)" >> /home/$USERNAME/.bashrc
 
-# Setup bash aliases
-RUN echo "alias ll='ls -alF'" >> /home/$USERNAME/.bashrc \
-    && echo "alias la='ls -A'" >> /home/$USERNAME/.bashrc \
-    && echo "alias l='ls -CF'" >> /home/$USERNAME/.bashrc \
-    && echo "alias clc='clear'" >> /home/$USERNAME/.bashrc \
-    && echo "alias ..='cd ..'" >> /home/$USERNAME/.bashrc \
-    && echo "alias fzf='fzf --preview \"bat --color=always --line-range :500 {}\"'" >> /home/$USERNAME/.bashrc \
-    #&& echo "alias fzf='fzf --bind 'enter:become(nano {})'" >> /home/$USERNAME/.bashrc \
-    && echo "alias reload='source ~/.bashrc'" >> /home/$USERNAME/.bashrc
-
-
 ENV DEBIAN_FRONTEND=
 
 FROM base AS app
@@ -94,7 +83,8 @@ RUN sudo apt update && sudo apt install -y \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-navigation2 \
     ros-${ROS_DISTRO}-nav2-bringup \
-    ros-${ROS_DISTRO}-rtabmap-ros
+    ros-${ROS_DISTRO}-rtabmap-ros \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install other software
 #RUN sudo apt update && sudo apt install -y \

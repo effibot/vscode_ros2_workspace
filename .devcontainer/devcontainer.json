@@ -5,7 +5,7 @@
     "remoteUser": "ros",
     "initializeCommand": "",
     "postCreateCommand": "",
-    "postAttachCommand": "",
+    "postAttachCommand": "echo 'source /home/ros/.alias.sh' >> ~/.bashrc",
     "updateContentCommand": "",
     "workspaceFolder": "/ros_ws",
     "customizations": {

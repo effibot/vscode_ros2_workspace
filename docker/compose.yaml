@@ -28,6 +28,12 @@ services:
       - type: bind
         source: /dev/dri
         target: /dev/dri
+      - type: bind
+        source: .devcontainer/.config/.alias.sh
+        target: /home/ros/.alias.sh
+      - type: bind
+        source: ./LivoxViewer2
+        target: /ros_ws/LivoxViewer2
     privileged: true
     network_mode: host
     # runtime: nvidia
@@ -48,6 +54,6 @@ services:
       #- NVIDIA_VISIBLE_DEVICES=all
       - QT_X11_NO_MITSHM=1
       - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
-      - PULSE_SERVER=${PULSE_SERVER}
+      #- PULSE_SERVER=${PULSE_SERVER}
     # Overrides default entrypoint so things don't shut down after the process ends.
     command: sleep infinity

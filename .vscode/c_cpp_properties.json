@@ -7,11 +7,9 @@
       },
       "includePath": [
         "/ros_ws/install/include/**",
-        "/opt/ros/jazzy/include/**",
-        "/ros_ws/src/examples/rclcpp/composition/minimal_composition/include/**",
-        "/ros_ws/src/examples/rclcpp/executors/cbg_executor/include/**",
-        "/ros_ws/src/examples/rclcpp/wait_set/include/**",
-        "/usr/include/**"
+        "/opt/ros/humble/include/**",        
+        "/usr/include/**",
+        "/ros_ws/src/**"
       ],
       "name": "ROS",
       "intelliSenseMode": "gcc-x64",
