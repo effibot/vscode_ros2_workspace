@@ -28,9 +28,6 @@ services:
       - type: bind
         source: /dev/dri
         target: /dev/dri
-      - type: bind
-        source: .devcontainer/.config/.alias.sh
-        target: /home/ros/
       #- type: bind
       #  source: ./LivoxViewer2
       #  target: /ros_ws/LivoxViewer2

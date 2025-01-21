@@ -4,10 +4,13 @@
     "service": "ros2_humble",
     "remoteUser": "ros",
     "initializeCommand": "",
-    "postCreateCommand": "",
-    "postAttachCommand": "echo 'source /home/ros/.alias.sh' >> ~/.bashrc",
+    "postCreateCommand": "echo 'source /home/ros/.config/.alias.sh' >> ~/.bashrc && exit",
+    "postAttachCommand": "",
     "updateContentCommand": "",
     "workspaceFolder": "/ros_ws",
+    "mounts": [
+        "source=${localWorkspaceFolder}/.devcontainer/.config/.alias.sh,target=/home/ros/.config/,type=bind"
+    ],
     "customizations": {
         "vscode": {
             "settings": {
@@ -49,7 +52,8 @@
                 "streetsidesoftware.code-spell-checker",
                 "Tyriar.sort-lines",
                 "wk-j.save-and-run",
-                "zachflower.uncrustify"
+                "zachflower.uncrustify",
+                "tomoki1207.pdf"
             ]
         }
     }
