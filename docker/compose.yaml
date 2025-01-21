@@ -30,10 +30,13 @@ services:
         target: /dev/dri
       - type: bind
         source: .devcontainer/.config/.alias.sh
-        target: /home/ros/.alias.sh
+        target: /home/ros/
+      #- type: bind
+      #  source: ./LivoxViewer2
+      #  target: /ros_ws/LivoxViewer2
       - type: bind
-        source: ./LivoxViewer2
-        target: /ros_ws/LivoxViewer2
+        source: /run/user/1000
+        target: /run/user/1000
     privileged: true
     network_mode: host
     # runtime: nvidia

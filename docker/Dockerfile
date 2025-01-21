@@ -83,11 +83,16 @@ RUN sudo apt update && sudo apt install -y \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-navigation2 \
     ros-${ROS_DISTRO}-nav2-bringup \
-    ros-${ROS_DISTRO}-rtabmap-ros \
-    && rm -rf /var/lib/apt/lists/*
+    ros-${ROS_DISTRO}-rtabmap-ros
 
 # Install other software
 #RUN sudo apt update && sudo apt install -y \
+
+# Clean up
+RUN sudo apt full-upgrade -y \
+    && sudo apt autoremove -y \
+    && sudo apt clean \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 ARG WORKSPACE=/ros_ws
 ENV WORKSPACE=$WORKSPACE

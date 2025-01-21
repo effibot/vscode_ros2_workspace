@@ -107,7 +107,6 @@
         "**/log": true
     },
     "cSpell.words": [
-        "RTPS",
         "athackst",
         "autopep",
         "cmake",
@@ -117,7 +116,11 @@
         "deque",
         "devcontainer",
         "ints",
+        "livox",
+        "Livox",
+        "MITSHM",
         "noqa",
+        "osrf",
         "pytest",
         "rclcpp",
         "rclpy",
@@ -129,6 +132,7 @@
         "uncrustify",
         "Wextra",
         "Wpedantic",
+        "wslg",
         "xmllint"
     ],
     "cSpell.allowCompoundWords": true,
@@ -144,5 +148,4 @@
     "ament-task-provider.envSetup": "source /opt/ros/humble/setup.bash",
     "ros.distro": "humble",
     "cmake.ignoreCMakeListsMissing": true,
-    
 }
