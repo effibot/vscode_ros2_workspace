@@ -53,7 +53,8 @@
                 "Tyriar.sort-lines",
                 "wk-j.save-and-run",
                 "zachflower.uncrustify",
-                "tomoki1207.pdf"
+                "tomoki1207.pdf",
+                "ms-vscode.makefile-tools"
             ]
         }
     }
