@@ -4,12 +4,12 @@
     "service": "ros2_humble",
     "remoteUser": "ros",
     "initializeCommand": "",
-    "postCreateCommand": "echo 'source /home/ros/.config/.alias.sh' >> ~/.bashrc && exit",
+    "postCreateCommand": "",
     "postAttachCommand": "",
     "updateContentCommand": "",
     "workspaceFolder": "/ros_ws",
     "mounts": [
-        "source=${localWorkspaceFolder}/.devcontainer/.config/.alias.sh,target=/home/ros/.config/,type=bind"
+        "source=${localWorkspaceFolder}/.devcontainer/.config/.bash_aliases.sh,target=/home/ros/.bash_aliases,type=bind"
     ],
     "customizations": {
         "vscode": {

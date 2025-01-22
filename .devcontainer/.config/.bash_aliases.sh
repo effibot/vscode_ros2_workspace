@@ -1,0 +1,13 @@
+#! /bin/bash
+alias ls='lsd --group-dirs first'
+alias la='ls -A'
+alias ll='ls -aglFG --total-size'
+alias lt='ls -gFG --total-size --tree'
+alias lta='ls -aglFG --total-size --tree'
+alias clc='clear'
+alias fzf='fzf --preview "batcat --color=always --line-range :500 {}" --bind "enter:become(${EDITOR} {})"'
+alias reload='source ~/.bashrc'
+alias build='(cd /ros_ws/ && .devcontainer/scripts/build.sh) && reload'
+alias setup='(cd /ros_ws/ && .devcontainer/scripts/setup.sh) && reloads'
+alias cat='batcat'
+alias ..='cd ..' 
