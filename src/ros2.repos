@@ -24,7 +24,7 @@ repositories:
     url: https://github.com/effibot/LIO-Livox2.git
     version: ros2
   
-  rmcs_slam:
-    type: git
-    url: https://github.com/Alliance-Algorithm/rmcs_slam.git
-    version: main
+  #rmcs_slam:
+  #  type: git
+  #  url: https://github.com/Alliance-Algorithm/rmcs_slam.git
+  #  version: main
