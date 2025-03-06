@@ -54,7 +54,8 @@
                 "wk-j.save-and-run",
                 "zachflower.uncrustify",
                 "tomoki1207.pdf",
-                "ms-vscode.makefile-tools"
+                "ms-vscode.makefile-tools",
+                "morningfrog.urdf-visualizer"
             ]
         }
     }
