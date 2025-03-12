@@ -137,6 +137,7 @@
         "rclcpp",
         "rclpy",
         "repos",
+        "rgba",
         "rosdep",
         "rosdistro",
         "rosidl",
@@ -145,6 +146,7 @@
         "rviz",
         "shopt",
         "uncrustify",
+        "urdf",
         "Wextra",
         "Wpedantic",
         "wslg",
@@ -164,4 +166,7 @@
     "ament-task-provider.envSetup": "source /opt/ros/humble/setup.bash",
     "ros.distro": "humble",
     "cmake.ignoreCMakeListsMissing": true,
+    "urdf-visualizer.packages": {
+      "kart_urdf": "${workspaceFolder}/src/kart_urdf"
+  },
 }
