@@ -3,3 +3,5 @@ install/*
 log/*
 site/*
 LivoxViewer2
+src/livox_sdk2
+src/pointcloud_to_laserscan

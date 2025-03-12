@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by
+Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<!-- Maybe substitute package://kart_description with file://$(find kart_description)-->
 <robot
-  name="kart_urdf">
+  name="kart_description">
   <link
     name="base_link">
     <inertial>
@@ -26,7 +28,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/base_link.STL" />
+          filename="package://kart_description/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -40,7 +42,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/base_link.STL" />
+          filename="package://kart_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -66,7 +68,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/battery_link.STL" />
+          filename="package://kart_description/meshes/battery_link.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +82,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/battery_link.STL" />
+          filename="package://kart_description/meshes/battery_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -119,7 +121,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_fr_link.STL" />
+          filename="package://kart_description/meshes/pivot_fr_link.STL" />
       </geometry>
       <material
         name="">
@@ -133,7 +135,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_fr_link.STL" />
+          filename="package://kart_description/meshes/pivot_fr_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -149,7 +151,7 @@
       link="pivot_fr_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -180,7 +182,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_fr_link.STL" />
+          filename="package://kart_description/meshes/wheel_fr_link.STL" />
       </geometry>
       <material
         name="">
@@ -194,7 +196,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_fr_link.STL" />
+          filename="package://kart_description/meshes/wheel_fr_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -210,7 +212,7 @@
       link="wheel_fr_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -241,7 +243,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_fl_link.STL" />
+          filename="package://kart_description/meshes/pivot_fl_link.STL" />
       </geometry>
       <material
         name="">
@@ -255,7 +257,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_fl_link.STL" />
+          filename="package://kart_description/meshes/pivot_fl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -271,7 +273,7 @@
       link="pivot_fl_link" />
     <axis
       xyz="0 0 1" />
-      <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -302,7 +304,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_fl_link.STL" />
+          filename="package://kart_description/meshes/wheel_fl_link.STL" />
       </geometry>
       <material
         name="">
@@ -316,7 +318,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_fl_link.STL" />
+          filename="package://kart_description/meshes/wheel_fl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -332,7 +334,7 @@
       link="wheel_fl_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -363,7 +365,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_br_link.STL" />
+          filename="package://kart_description/meshes/pivot_br_link.STL" />
       </geometry>
       <material
         name="">
@@ -377,7 +379,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_br_link.STL" />
+          filename="package://kart_description/meshes/pivot_br_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -393,7 +395,7 @@
       link="pivot_br_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -424,7 +426,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_br_link.STL" />
+          filename="package://kart_description/meshes/wheel_br_link.STL" />
       </geometry>
       <material
         name="">
@@ -438,7 +440,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_br_link.STL" />
+          filename="package://kart_description/meshes/wheel_br_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -454,7 +456,7 @@
       link="wheel_br_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -485,7 +487,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_bl_link.STL" />
+          filename="package://kart_description/meshes/pivot_bl_link.STL" />
       </geometry>
       <material
         name="">
@@ -499,7 +501,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/pivot_bl_link.STL" />
+          filename="package://kart_description/meshes/pivot_bl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -515,7 +517,7 @@
       link="pivot_bl_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -546,7 +548,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_bl_link.STL" />
+          filename="package://kart_description/meshes/wheel_bl_link.STL" />
       </geometry>
       <material
         name="">
@@ -560,7 +562,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/wheel_bl_link.STL" />
+          filename="package://kart_description/meshes/wheel_bl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -576,7 +578,7 @@
       link="wheel_bl_link" />
     <axis
       xyz="0 0 1" />
-    <limit 
+    <limit
       effort="100"
       lower="-3.14159"
       upper="3.14159"
@@ -607,7 +609,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/plate_f_link.STL" />
+          filename="package://kart_description/meshes/plate_f_link.STL" />
       </geometry>
       <material
         name="">
@@ -621,7 +623,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/plate_f_link.STL" />
+          filename="package://kart_description/meshes/plate_f_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -660,7 +662,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/lidar_link.STL" />
+          filename="package://kart_description/meshes/lidar_link.STL" />
       </geometry>
       <material
         name="">
@@ -674,7 +676,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/lidar_link.STL" />
+          filename="package://kart_description/meshes/lidar_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -713,7 +715,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/plate_r_link.STL" />
+          filename="package://kart_description/meshes/plate_r_link.STL" />
       </geometry>
       <material
         name="">
@@ -727,7 +729,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_urdf/meshes/plate_r_link.STL" />
+          filename="package://kart_description/meshes/plate_r_link.STL" />
       </geometry>
     </collision>
   </link>

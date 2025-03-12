@@ -167,6 +167,6 @@
     "ros.distro": "humble",
     "cmake.ignoreCMakeListsMissing": true,
     "urdf-visualizer.packages": {
-      "kart_urdf": "${workspaceFolder}/src/kart_urdf"
+      "kart_description": "${workspaceFolder}/src/kart_description"
   },
 }
