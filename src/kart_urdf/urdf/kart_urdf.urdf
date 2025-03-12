@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="kart_urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.003553 -8.6975E-09 0.34226"
+        rpy="0 0 0" />
+      <mass
+        value="29.552" />
+      <inertia
+        ixx="0.46707"
+        ixy="-5.3125E-10"
+        ixz="2.9316E-05"
+        iyy="1.0457"
+        iyz="-3.757E-09"
+        izz="1.23" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="battery_link">
+    <inertial>
+      <origin
+        xyz="-3.6212E-06 -8.6736E-18 5.312E-06"
+        rpy="0 0 0" />
+      <mass
+        value="350.05" />
+      <inertia
+        ixx="5.1928"
+        ixy="7.3712E-16"
+        ixz="-0.00015529"
+        iyy="9.7927"
+        iyz="2.4861E-16"
+        izz="10.574" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/battery_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/battery_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery"
+    type="fixed">
+    <origin
+      xyz="0 0 0.1565"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="pivot_fr_link">
+    <inertial>
+      <origin
+        xyz="-0.0209462809054473 -2.22044604925031E-16 -0.0556733815955309"
+        rpy="0 0 0" />
+      <mass
+        value="4.9241947653983" />
+      <inertia
+        ixx="0.0145104445261292"
+        ixy="-1.45819672606201E-17"
+        ixz="-0.00428323224825852"
+        iyy="0.0147433430543042"
+        iyz="-1.56090649818831E-17"
+        izz="0.00926970619031274" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_fr_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_fr_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pivot_fr"
+    type="continuous">
+    <origin
+      xyz="0.2675 -0.14775 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="pivot_fr_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="wheel_fr_link">
+    <inertial>
+      <origin
+        xyz="-2.7756E-17 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="1.9175" />
+      <inertia
+        ixx="0.0052108"
+        ixy="1.1934E-33"
+        ixz="2.4174E-19"
+        iyy="0.0052108"
+        iyz="1.5911E-17"
+        izz="0.0096226" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_fr_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_fr_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_fr"
+    type="continuous">
+    <origin
+      xyz="-0.059 0 -0.14065"
+      rpy="1.5708 0 0" />
+    <parent
+      link="pivot_fr_link" />
+    <child
+      link="wheel_fr_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="pivot_fl_link">
+    <inertial>
+      <origin
+        xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"
+        rpy="0 0 0" />
+      <mass
+        value="4.9241947653983" />
+      <inertia
+        ixx="0.0145104445261292"
+        ixy="-1.42240334890659E-17"
+        ixz="-0.00428323224825851"
+        iyy="0.0147433430543042"
+        iyz="-1.75453742864597E-17"
+        izz="0.00926970619031273" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_fl_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_fl_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pivot_fl"
+    type="continuous">
+    <origin
+      xyz="0.2675 0.14775 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="pivot_fl_link" />
+    <axis
+      xyz="0 0 1" />
+      <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="wheel_fl_link">
+    <inertial>
+      <origin
+        xyz="0 0 5.5511E-17"
+        rpy="0 0 0" />
+      <mass
+        value="1.9175" />
+      <inertia
+        ixx="0.0052108"
+        ixy="-1.2342E-34"
+        ixz="-1.1097E-18"
+        iyy="0.0052108"
+        iyz="7.5525E-34"
+        izz="0.0096226" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_fl_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_fl_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_fl"
+    type="continuous">
+    <origin
+      xyz="-0.059 0 -0.14065"
+      rpy="1.5708 0 0" />
+    <parent
+      link="pivot_fl_link" />
+    <child
+      link="wheel_fl_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="pivot_br_link">
+    <inertial>
+      <origin
+        xyz="-0.020944 -0.00027865 -0.055673"
+        rpy="0 0 0" />
+      <mass
+        value="4.9242" />
+      <inertia
+        ixx="0.01451"
+        ixy="-3.098E-06"
+        ixz="-0.0042829"
+        iyy="0.014743"
+        iyz="-5.6981E-05"
+        izz="0.0092697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_br_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_br_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pivot_br"
+    type="continuous">
+    <origin
+      xyz="-0.2675 -0.14775 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="pivot_br_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="wheel_br_link">
+    <inertial>
+      <origin
+        xyz="-5.5511E-17 0 2.7756E-17"
+        rpy="0 0 0" />
+      <mass
+        value="1.9175" />
+      <inertia
+        ixx="0.0052108"
+        ixy="-8.0031E-35"
+        ixz="6.0715E-18"
+        iyy="0.0052108"
+        iyz="5.3797E-34"
+        izz="0.0096226" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_br_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_br_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_br"
+    type="continuous">
+    <origin
+      xyz="-0.058995 -0.00078489 -0.14065"
+      rpy="1.5708 0 0.013304" />
+    <parent
+      link="pivot_br_link" />
+    <child
+      link="wheel_br_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="pivot_bl_link">
+    <inertial>
+      <origin
+        xyz="-0.020946 -2.2204E-16 -0.055673"
+        rpy="0 0 0" />
+      <mass
+        value="4.9242" />
+      <inertia
+        ixx="0.01451"
+        ixy="-1.2865E-17"
+        ixz="-0.0042832"
+        iyy="0.014743"
+        iyz="-1.7694E-17"
+        izz="0.0092697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_bl_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/pivot_bl_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pivot_bl"
+    type="continuous">
+    <origin
+      xyz="-0.2675 0.14775 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="pivot_bl_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="wheel_bl_link">
+    <inertial>
+      <origin
+        xyz="-5.5511E-17 1.1102E-16 0"
+        rpy="0 0 0" />
+      <mass
+        value="1.9175" />
+      <inertia
+        ixx="0.0052108"
+        ixy="1.4809E-34"
+        ixz="4.5308E-19"
+        iyy="0.0052108"
+        iyz="1.0672E-35"
+        izz="0.0096226" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_bl_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/wheel_bl_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_bl"
+    type="continuous">
+    <origin
+      xyz="-0.059 0 -0.14065"
+      rpy="1.5708 0 0" />
+    <parent
+      link="pivot_bl_link" />
+    <child
+      link="wheel_bl_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit 
+      effort="100"
+      lower="-3.14159"
+      upper="3.14159"
+      velocity="100" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+  <link
+    name="plate_f_link">
+    <inertial>
+      <origin
+        xyz="-0.0100345240687573 1.38777878078145E-17 -0.00193808621594616"
+        rpy="0 0 0" />
+      <mass
+        value="0.543664382614068" />
+      <inertia
+        ixx="0.00142145163783189"
+        ixy="-1.63134061598947E-20"
+        ixz="-7.51367874610762E-06"
+        iyy="0.000644247611460058"
+        iyz="-1.71576680945249E-19"
+        izz="0.00206311321883257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/plate_f_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/plate_f_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="plate_f"
+    type="fixed">
+    <origin
+      xyz="0.4 0 0.5155"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="plate_f_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="-0.000145659799707485 0 -0.0231960291766649"
+        rpy="0 0 0" />
+      <mass
+        value="1.52618720582253" />
+      <inertia
+        ixx="0.000810796091870868"
+        ixy="-1.7724526389103E-19"
+        ixz="-2.11277189620233E-06"
+        iyy="0.000818562651118346"
+        iyz="1.63926788158313E-19"
+        izz="0.000975731523085195" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar"
+    type="fixed">
+    <origin
+      xyz="0.01 0 -0.0505"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="plate_f_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="plate_r_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/plate_r_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kart_urdf/meshes/plate_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="plate_r"
+    type="fixed">
+    <origin
+      xyz="0.295 -0.277745098039219 0.515995553214055"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="plate_r_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

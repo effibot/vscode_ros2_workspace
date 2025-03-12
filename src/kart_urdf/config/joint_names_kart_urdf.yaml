@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'pivot_fr', 'wheel_fr', 'pivot_fl', 'wheel_fl', 'pivot_br', 'wheel_br', 'pivot_bl', 'wheel_bl', ]
