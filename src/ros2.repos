@@ -19,7 +19,7 @@ repositories:
     url: https://github.com/effibot/Livox-SDK2.git
     version: master
 
-  fast_lio2:
+  fast_lio:
     type: git
     url: https://github.com/effibot/fast_lio2.git
     version: ros2

@@ -98,7 +98,8 @@ RUN sudo apt update && sudo apt install -y \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-navigation2 \
     ros-${ROS_DISTRO}-nav2-bringup \
-    ros-${ROS_DISTRO}-rtabmap-ros
+    ros-${ROS_DISTRO}-ros-gz
+    #ros-${ROS_DISTRO}-rtabmap-ros
 
 # Install other software
 #RUN sudo apt update && sudo apt install -y \
