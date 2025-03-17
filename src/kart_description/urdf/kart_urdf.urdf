@@ -3,7 +3,7 @@
 Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<!-- Maybe substitute package://kart_description with file://$(find kart_description)-->
+<!-- Maybe substitute file://$(find kart_description) with file://$(find kart_description)-->
 <robot
   name="kart_description">
   <link name="dummy"/>  
@@ -33,7 +33,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/base_link.STL" />
+          filename="file://$(find kart_description)/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -47,7 +47,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/base_link.STL" />
+          filename="file://$(find kart_description)/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -73,7 +73,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/battery_link.STL" />
+          filename="file://$(find kart_description)/meshes/battery_link.STL" />
       </geometry>
       <material
         name="">
@@ -87,7 +87,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/battery_link.STL" />
+          filename="file://$(find kart_description)/meshes/battery_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -126,7 +126,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_fr_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_fr_link.STL" />
       </geometry>
       <material
         name="">
@@ -140,7 +140,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_fr_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_fr_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -187,7 +187,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_fr_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_fr_link.STL" />
       </geometry>
       <material
         name="">
@@ -201,7 +201,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_fr_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_fr_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -248,7 +248,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_fl_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_fl_link.STL" />
       </geometry>
       <material
         name="">
@@ -262,7 +262,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_fl_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_fl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -309,7 +309,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_fl_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_fl_link.STL" />
       </geometry>
       <material
         name="">
@@ -323,7 +323,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_fl_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_fl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -370,7 +370,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_br_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_br_link.STL" />
       </geometry>
       <material
         name="">
@@ -384,7 +384,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_br_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_br_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -431,7 +431,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_br_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_br_link.STL" />
       </geometry>
       <material
         name="">
@@ -445,7 +445,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_br_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_br_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -492,7 +492,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_bl_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_bl_link.STL" />
       </geometry>
       <material
         name="">
@@ -506,7 +506,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/pivot_bl_link.STL" />
+          filename="file://$(find kart_description)/meshes/pivot_bl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -553,7 +553,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_bl_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_bl_link.STL" />
       </geometry>
       <material
         name="">
@@ -567,7 +567,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/wheel_bl_link.STL" />
+          filename="file://$(find kart_description)/meshes/wheel_bl_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -614,7 +614,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/plate_f_link.STL" />
+          filename="file://$(find kart_description)/meshes/plate_f_link.STL" />
       </geometry>
       <material
         name="">
@@ -628,7 +628,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/plate_f_link.STL" />
+          filename="file://$(find kart_description)/meshes/plate_f_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -667,7 +667,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/lidar_link.STL" />
+          filename="file://$(find kart_description)/meshes/lidar_link.STL" />
       </geometry>
       <material
         name="">
@@ -681,7 +681,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/lidar_link.STL" />
+          filename="file://$(find kart_description)/meshes/lidar_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -720,7 +720,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/plate_r_link.STL" />
+          filename="file://$(find kart_description)/meshes/plate_r_link.STL" />
       </geometry>
       <material
         name="">
@@ -734,7 +734,7 @@ Stephen Brawner (brawner@gmail.com)
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://kart_description/meshes/plate_r_link.STL" />
+          filename="file://$(find kart_description)/meshes/plate_r_link.STL" />
       </geometry>
     </collision>
   </link>

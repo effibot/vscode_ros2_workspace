@@ -35,6 +35,9 @@ RUN apt update && apt install -y \
     bat \
     git \
     vim \
+    neovim \
+    libgl1-mesa-glx \
+    libgl1-mesa-dri \
     nano \
     gdb \
     gawk \

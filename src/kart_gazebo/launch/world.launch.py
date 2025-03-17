@@ -14,7 +14,7 @@ def generate_launch_description():
         description='Name of the Gazebo world file to load'
     )
 
-    pkg_kart_desc = get_package_share_directory('kart_description')
+    pkg_kart_desc = get_package_share_directory('kart_gazebo')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # Add your own gazebo library path here
