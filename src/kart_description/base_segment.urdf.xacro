@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- xacro description of a segment -->
+
+    <xacro:property name="package" value="$(find kart_description)"/>
+    <xacro:arg name="properties" default="$(package)/config/properties.yaml"/>
+    
+    <!-- A segment is composed of a joint and the attached link -->
+    <xacro:macro
+		name="segment"
+		params="link_prefix:=^|''
+				joint_prefix:=^|''	
+				reflect:=^
+				*origin	*axis
+				mesh:=1
+				scale_factor:=^|1.0
+				joint
+				link
+                parent
+				model:=^|'base'">
+		<xacro:property name="props" value="${properties}[object][model]}"/>
+		<!-- Joint Definition -->
+		<joint name="${joint_prefix}${model}_${joint}_joint" type="${props[joint_type]}">
+			<xacro:insert_block name="origin"/>
+			<parent link="${link_prefix}${parent}"/>
+			<child link="${link_prefix}${model}_${link}_link"/>
+			<xacro:insert_block name="axis"/>
+			<limit 	lower="${props[bounds][lower]*pi/180}"
+					upper="${props[bounds][upper]*pi/180}"
+					effort="${props[effort]}"
+					velocity="${props[velocity]"/>
+			<dynamics damping="${props[damping]}" friction="${props[friction]}"/>
+		</joint>
+		<!-- Link Definition -->
+		<link name="${link_prefix}${model}_${link}_link">
+			<xacro:if value="${mesh != 0}">
+				<visual>
+					<geometry>
+						<xacro:if value="${mesh == 1}">
+							<xacro:property name="mesh" value="${model}"/>							
+						</xacro:if>	
+						<mesh 	filename="file://$(package)/meshes/${mesh}.STL"
+								scale="${scale_factor*0.001*reflect} ${scale_factor*0.001} ${scale_factor*0.001}"/>
+					</geometry>
+					<material name="${model}"/>
+				</visual>
+			</xacro:if>
+		</link>
+    </xacro:macro>
+
+    
+
+
+</robot>

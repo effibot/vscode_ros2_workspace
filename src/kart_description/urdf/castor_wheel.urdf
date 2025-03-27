@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot name="castor_wheel"
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- xacro description of a castor wheel segment -->
+    <!-- A segment is composed of a joint and the attached link -->
+
+    <xacro:property name="package" value="$(find kart_description)"/>
+    <xacro:arg name="properties" default="$(package)/config/properties.yaml"/>
+    
+    <!-- Wheel Model -->
+
+    <xacro:macro name="wheel" 
+        params="prefix:='' suffix:='' parent">
+        <xacro:property name="radius" value="0.1"/>
+        <xacro:property name="diameter" value="${radius * 2}"/>
+        <xacro:property name="width" value="0.05"/>
+        <xacro:property name="prefix_" value='${prefix + "_" if prefix else ""}'/>
+        <xacro:property name="wheel_mesh" value="file://$(package)/meshes/wheel.STL"/>
+    </xacro:macro>
+
+
+</robot>

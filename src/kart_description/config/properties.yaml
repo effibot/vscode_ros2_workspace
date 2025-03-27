@@ -1,0 +1,58 @@
+joints:
+    default: &JOINT_DEFAULT
+        effort: 100
+        velocity: 100
+        damping: 0.1
+        friction: 0.1
+
+
+    
+object:
+    # base object in case a model is not mapped
+    base: # a generic cube of L=0.1m, M=1kg
+        <<: *JOINT_DEFAULT
+        joint_type: 'fixed'
+        # The sizes of the cuboid in meters
+        width: 0.1
+        length: 0.1
+        height: 0.1
+        # The mass in kg
+        mass: 1.0
+        # The inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
+        inertia:
+            [1, 0, 0, 1, 0, 1]
+    wheel:
+        # Inherits from the default joint properties
+        <<: *JOINT_DEFAULT
+        joint_type: 'continuous'
+        # The wheel radius in meters
+        radius: 0.1
+        # The wheel width in meters
+        width: 0.05
+        # The wheel mass in kg
+        mass: 1.9175
+        # The wheel inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
+        inertia:
+            [0.0052108, 1.1934E-33, 2.4174E-19, 0.0052108, 1.5911E-17, 0.0096226]
+        # The wheel friction coefficient
+        friction_coefficient: 0.8
+
+        
+    pivot: # modeled as cuboid with a revolute joint
+        # Inherits from the default joint properties
+        <<: *JOINT_DEFAULT
+        joint_type: 'revolute'
+        limits: 
+            lower: -1.5707963268
+            upper: 1.5707963268
+            effort: 100
+            velocity: 100
+        # The sizes of the cuboid in meters
+        width: 0.088
+        length: 0.1
+        height: 0.16504
+        # The pivot mass in kg
+        mass: 4.9241947653983
+        # The pivot inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
+        inertia:
+            [0.0145104445261292,-1.45819672606201E-17,-0.00428323224825852,0.0147433430543042,-1.56090649818831E-17,0.00926970619031274]
