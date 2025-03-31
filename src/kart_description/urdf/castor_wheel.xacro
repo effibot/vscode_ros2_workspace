@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="castor_wheel"
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- xacro description of a castor wheel segment -->
+    <!-- A segment is composed of a joint and the attached link -->
+
+    <xacro:property name="package" value="$(find kart_description)"/>
+    <xacro:arg name="properties" default="${package}/config/properties.yaml"/>
+    
+    <!-- Include segment xacro -->
+    <xacro:include filename="${package}/urdf/base_segment.urdf.xacro"/> 
+
+    <!-- CASTOR WHEEL MODEL -->
+    <xacro:macro name="castor_wheel"
+                params="parent 
+                        link_prefix:=^|'' 
+                        joint_prefix:=^|'' 
+                        reflect:=^ 
+                        *origin                        
+                        scale_factor:=^|1.0">                        
+        <!-- PIVOT -->
+        <xacro:segment joint="pivot" link="pivot" parent="${parent}" model="pivot">
+                <!-- This origin comes from the file where the macro will be expanded -->
+                <xacro:insert_block name="origin"/>
+                <!-- The rotation happens on the Z-axis -->
+                <axis xyz="0.0 0.0 1.0"/>
+        </xacro:segment>
+        
+        <!-- WHEEL -->
+        <xacro:segment joint="wheel" link="wheel" parent="${parent}" model="wheel">
+                <!-- 
+                    This origin is fixed and belogns to the pivotal joint 
+                    To rotate the wheel around its own axis, we need to rotate it around the X-axis
+                -->
+                <origin xyz="-0.059 0 -0.14065" rpy="${pi/2} 0.0 0.0"/>
+                <!-- The rotation happens on the Z-axis -->
+                <axis xyz="0.0 0.0 1.0"/>
+        </xacro:segment>
+    </xacro:macro>
+
+</robot>

@@ -33,7 +33,14 @@ object:
         mass: 1.9175
         # The wheel inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            [0.0052108, 1.1934E-33, 2.4174E-19, 0.0052108, 1.5911E-17, 0.0096226]
+            ixx: 0.0052108
+            ixy: 1.1934E-33
+            ixz: 2.4174E-19
+            iyy: 0.0052108
+            iyz: 1.5911E-17
+            izz: 0.0096226
+            xyz: "-2.7756E-17 0 0"
+            rpy: "0 0 0"
         # The wheel friction coefficient
         friction_coefficient: 0.8
 
@@ -42,11 +49,10 @@ object:
         # Inherits from the default joint properties
         <<: *JOINT_DEFAULT
         joint_type: 'revolute'
-        limits: 
-            lower: -1.5707963268
-            upper: 1.5707963268
-            effort: 100
-            velocity: 100
+        # bounds of the revolute joint in degrees
+        bounds:
+            lower: -90
+            upper: 90
         # The sizes of the cuboid in meters
         width: 0.088
         length: 0.1
@@ -55,4 +61,11 @@ object:
         mass: 4.9241947653983
         # The pivot inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            [0.0145104445261292,-1.45819672606201E-17,-0.00428323224825852,0.0147433430543042,-1.56090649818831E-17,0.00926970619031274]
+            ixx: 0.0145104445261292
+            ixy: -1.45819672606201E-17
+            ixz: -0.00428323224825852
+            iyy: 0.0147433430543042
+            iyz: -1.56090649818831E-17
+            izz: 0.00926970619031274
+            xyz: "-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"
+            rpy: "0 0 0"

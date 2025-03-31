@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Material of the Robot -->
+<robot>
+    <material name="Rubber">
+        <color rgba="0.9098 0.44314 0.031373 1" />
+    </material>
+    <material name="Steel">
+        <color rgba="0.5 0.5 0.5 1" />
+    </material>
+    <material name="Aluminum">
+        <color rgba="084705882353 0,678431372549 0.0 1"/>
+    </material>    
+</robot>

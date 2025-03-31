@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- xacro description of a segment -->
+
+    <xacro:property name="package" value="$(find kart_description)"/>
+    <xacro:arg name="properties" default="${package}/config/properties.yaml"/>
+    
+	<!-- Include Materials xacro file -->
+	<xacro:include filename="${package}/urdf/materials.urdf.xacro"/>
+
+	<!-- Geometry Collision/Visual Macro -->
+	<xacro:macro name="geom" params="mesh:=1 
+				scale_factor:=^|1.0
+				reflect:=^
+				model:=^|'base'">
+		<origin xyz = "0 0 0" rpy= "0 0 0"/>
+		<geometry>
+			<xacro:if value="${mesh == 1}">
+				<xacro:property name="mesh" value="${model}"/>							
+			</xacro:if>	
+			<mesh 	filename="file://$ {package}/meshes/${mesh}.STL"
+					scale="${scale_factor*0.001*reflect} ${scale_factor*0.001} ${scale_factor*0.001}"/>
+		</geometry>
+	</xacro:macro>
+
+    <!-- A segment is composed of a joint and the attached link -->
+    <xacro:macro
+		name="segment"
+		params="link_prefix:=^|''
+				joint_prefix:=^|''	
+				reflect:=^
+				*origin	*axis
+				mesh:=1
+				material:=^|''
+				scale_factor:=^|1.0
+				joint
+				link
+                parent
+				model:=^|'base'">
+		<xacro:property name="props" value="${properties}[object][model]}"/>
+		<xacro:property name="II" value="${props[inertia]}"/>
+		<!-- Joint Definition -->
+		<joint name="${joint_prefix}${model}_${joint}_joint" type="${props[joint_type]}">
+			<parent link="${link_prefix}${parent}"/>
+			<child link="${link_prefix}${model}_${link}_link"/>
+			<xacro:insert_block name="origin"/>
+			<xacro:insert_block name="axis"/>
+			<!-- If the type is not fixed, add the limits-->
+			<xacro:if value="${props[joint_type] != 'fixed'}">
+				<limit 	lower="${props[bounds][lower]*pi/180}"
+					upper="${props[bounds][upper]*pi/180}"
+					effort="${props[effort]}"
+					velocity="${props[velocity]"/>
+				<dynamics damping="${props[damping]}" friction="${props[friction]}"/>
+			</xacro:if>			
+		</joint>
+		<!-- Link Definition -->
+		<link name="${link_prefix}${model}_${link}_link">
+			<intertial>
+				<mass value="${props[mass]}"/>
+				<inertia ixx="${II[ixx]}" iyy="${II[iyy]}" izz="${II[izz]}"
+						 ixy="${II[ixy]}" iyz="${II[iyz]}" ixz="${II[ixz]}"/>
+				<origin xyz="${II[xyz]}" rpy="${II[rpy}"/>
+			</intertial>
+			
+			<xacro:if value="${mesh != 0}">
+				<visual>
+					<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+					<material name="${material}"/>
+				</visual>
+				<collision>
+					<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+				</collision>
+			</xacro:if>
+		</link>
+    </xacro:macro>
+
+    
+
+
+</robot>
