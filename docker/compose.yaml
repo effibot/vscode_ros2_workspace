@@ -4,7 +4,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
       tags:
-        - latest
+        - ros2_jazzy_nvidia:latest
       target: app
       args:
         - BASE_DOCKER_IMAGE=osrf/ros:jazzy-desktop-full
