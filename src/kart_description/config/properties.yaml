@@ -5,30 +5,53 @@ joints:
         damping: 0.1
         friction: 0.1
 
-
-    
-object:
+objects:
     # base object in case a model is not mapped
     base: # a generic cube of L=0.1m, M=1kg
         <<: *JOINT_DEFAULT
         joint_type: 'fixed'
+        figure: 'box'
         # The sizes of the cuboid in meters
         width: 0.1
         length: 0.1
         height: 0.1
+        # visualization properties
+        v_origin: # describe the visual origin
+            v_x: 0    # x-axis
+            v_y: 0    # y-axis
+            v_z: 0    # z-axis
+            v_roll: 0    # roll
+            v_pitch: 0    # pitch
+            v_yaw: 0    # yaw
         # The mass in kg
         mass: 1.0
         # The inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            [1, 0, 0, 1, 0, 1]
+            ixx: 1
+            ixy: 0
+            ixz: 0
+            iyy: 1
+            iyz: 0
+            izz: 1
+            xyz: "0 0 0"
+            rpy: "0 0 0"
     wheel:
         # Inherits from the default joint properties
         <<: *JOINT_DEFAULT
         joint_type: 'continuous'
+        figure: 'cylinder'
         # The wheel radius in meters
         radius: 0.1
-        # The wheel width in meters
-        width: 0.05
+        # The wheel length in meters
+        length: 0.05
+        # visualization properties
+        v_origin: # describe the visual origin
+            v_x: 0    # x-axis
+            v_y: 0    # y-axis
+            v_z: 0    # z-axis
+            v_roll: 0    # roll
+            v_pitch: 0    # pitch
+            v_yaw: 0    # yaw
         # The wheel mass in kg
         mass: 1.9175
         # The wheel inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
@@ -41,22 +64,28 @@ object:
             izz: 0.0096226
             xyz: "-2.7756E-17 0 0"
             rpy: "0 0 0"
-        # The wheel friction coefficient
-        friction_coefficient: 0.8
 
-        
     pivot: # modeled as cuboid with a revolute joint
         # Inherits from the default joint properties
         <<: *JOINT_DEFAULT
         joint_type: 'revolute'
+        figure: 'box'
         # bounds of the revolute joint in degrees
         bounds:
             lower: -90
             upper: 90
         # The sizes of the cuboid in meters
-        width: 0.088
+        width: 0.13339
         length: 0.1
         height: 0.16504
+        # visualization properties
+        v_origin: # describe the visual origin
+            v_x: -0.017    # x-axis
+            v_y: 0    # y-axis
+            v_z: -0.08252    # z-axis: -height/2
+            v_roll: 0    # roll
+            v_pitch: 0    # pitch
+            v_yaw: 0    # yaw
         # The pivot mass in kg
         mass: 4.9241947653983
         # The pivot inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]

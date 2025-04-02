@@ -168,6 +168,6 @@
     "ros.distro": "humble",
     "cmake.ignoreCMakeListsMissing": true,
     "urdf-visualizer.packages": {
-      "kart_description": "${workspaceFolder}/src/kart_description"
-  },
+      "kart_description": "${workspaceFolder}/src/kart_description",
+},
 }

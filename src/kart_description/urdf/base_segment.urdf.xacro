@@ -1,81 +1,98 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <!-- xacro description of a segment -->
 
-    <xacro:property name="package" value="$(find kart_description)"/>
-    <xacro:arg name="properties" default="${package}/config/properties.yaml"/>
-    
+	<!-- Package Path -->
+	<xacro:property name="package" value="$(find kart_description)"/>
+
+	<!-- Load the properties for the object to render -->
+	<xacro:property name="props_file" value="${package}/config/properties.yaml"/>
+	<xacro:property name="properties" value="${xacro.load_yaml(props_file)}"/>
+	<xacro:property name="obj_props" value="${properties['objects']}"/>
+
 	<!-- Include Materials xacro file -->
 	<xacro:include filename="${package}/urdf/materials.urdf.xacro"/>
 
 	<!-- Geometry Collision/Visual Macro -->
-	<xacro:macro name="geom" params="mesh:=1 
-				scale_factor:=^|1.0
-				reflect:=^
-				model:=^|'base'">
-		<origin xyz = "0 0 0" rpy= "0 0 0"/>
+	<xacro:macro
+		name="geom"
+		params="mesh:=1 scale_factor:=^|1.0 reflect:=^ props:=^ model:=^|'base'">
+		<xacro:if value="${mesh == 0}">
+			<origin xyz = "${props['v_origin']['v_x']} ${props['v_origin']['v_y']} ${props['v_origin']['v_z']}" rpy= "${props['v_origin']['v_roll']} ${props['v_origin']['v_pitch']} ${props['v_origin']['v_yaw']}"/>
+		</xacro:if>
+		<xacro:if value="${mesh == 1}">
+			<origin xyz = "0 0 0" rpy= "0 0 0"/>
+		</xacro:if>
 		<geometry>
+			<!-- Check if a segment with a mesh is being loaded -->
 			<xacro:if value="${mesh == 1}">
-				<xacro:property name="mesh" value="${model}"/>							
-			</xacro:if>	
-			<mesh 	filename="file://$ {package}/meshes/${mesh}.STL"
-					scale="${scale_factor*0.001*reflect} ${scale_factor*0.001} ${scale_factor*0.001}"/>
+				<!-- Load the mesh -->
+				<xacro:property name="mesh" value="${model}"/>
+				<mesh filename="package://${package.split('/')[-1]}/meshes/${mesh}.STL"/>
+				<!--scale="${scale_factor*0.001*reflect} ${scale_factor*0.001} ${scale_factor*0.001}"-->
+			</xacro:if>
+			<!-- Check which type of object is being loaded by its properties -->
+			<xacro:if value="${mesh == 0}">
+				<xacro:if value="${props['figure'] == 'cylinder'}">
+					<cylinder radius="${props['radius']*scale_factor}" length="${props['length']*scale_factor}"/>
+				</xacro:if>
+				<xacro:if value="${props['figure'] == 'box'}">
+					<box size="${props['width']} ${props['length']} ${props['height']}"/>
+					<origin xyz="0 0 ${props['height']/2.0}" rpy="0 0 0"/>
+				</xacro:if>
+			</xacro:if>
 		</geometry>
 	</xacro:macro>
 
-    <!-- A segment is composed of a joint and the attached link -->
-    <xacro:macro
+	<!--
+		xacro description of a segment.
+		A segment is composed of a joint and the attached link
+	-->
+	<xacro:macro
 		name="segment"
 		params="link_prefix:=^|''
-				joint_prefix:=^|''	
-				reflect:=^
-				*origin	*axis
+				joint_prefix:=^|''
+				reflect:=^!1
+				scale_factor:=^|1.0
 				mesh:=1
 				material:=^|''
-				scale_factor:=^|1.0
-				joint
-				link
-                parent
-				model:=^|'base'">
-		<xacro:property name="props" value="${properties}[object][model]}"/>
-		<xacro:property name="II" value="${props[inertia]}"/>
+				*origin *axis
+				model:=^|'base'
+				joint link parent">
+		<xacro:property name="props" value="${obj_props[model]}"/>
+		<xacro:property name="II" value="${props['inertia']}"/>
+
 		<!-- Joint Definition -->
-		<joint name="${joint_prefix}${model}_${joint}_joint" type="${props[joint_type]}">
-			<parent link="${link_prefix}${parent}"/>
-			<child link="${link_prefix}${model}_${link}_link"/>
+		<joint name="${joint_prefix}${model}_joint" type="${props['joint_type']}">
+			<parent link="${parent}"/>
+			<child link="${link_prefix}${model}_link"/>
 			<xacro:insert_block name="origin"/>
 			<xacro:insert_block name="axis"/>
-			<!-- If the type is not fixed, add the limits-->
-			<xacro:if value="${props[joint_type] != 'fixed'}">
-				<limit 	lower="${props[bounds][lower]*pi/180}"
-					upper="${props[bounds][upper]*pi/180}"
-					effort="${props[effort]}"
-					velocity="${props[velocity]"/>
-				<dynamics damping="${props[damping]}" friction="${props[friction]}"/>
-			</xacro:if>			
+			<!-- add bounds for the joint if present in the config file -->
+			<xacro:if value="${'bounds' in props.keys()}">
+				<limit lower="${props['bounds']['lower']*pi/180}" upper="${props['bounds']['upper']*pi/180}" effort="${props['effort']}" velocity="${props['velocity']}"/>
+			</xacro:if>
+			<!-- If not, just add limits and dynamics factors -->
+			<xacro:if value="${'bounds' not in props.keys()}">
+				<limit effort="${props['effort']}" velocity="${props['velocity']}"/>
+			</xacro:if>
+			<dynamics damping="${props['damping']}" friction="${props['friction']}"/>
 		</joint>
 		<!-- Link Definition -->
-		<link name="${link_prefix}${model}_${link}_link">
+		<link name="${link_prefix}${model}_link">
 			<intertial>
-				<mass value="${props[mass]}"/>
-				<inertia ixx="${II[ixx]}" iyy="${II[iyy]}" izz="${II[izz]}"
-						 ixy="${II[ixy]}" iyz="${II[iyz]}" ixz="${II[ixz]}"/>
-				<origin xyz="${II[xyz]}" rpy="${II[rpy}"/>
+				<mass value="${props['mass']}"/>
+				<inertia ixx="${II['ixx']}" iyy="${II['iyy']}" izz="${II['izz']}" ixy="${II['ixy']}" iyz="${II['iyz']}" ixz="${II['ixz']}"/>
+				<origin xyz="${II['xyz']}" rpy="${II['rpy']}"/>
 			</intertial>
-			
-			<xacro:if value="${mesh != 0}">
-				<visual>
-					<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
-					<material name="${material}"/>
-				</visual>
-				<collision>
-					<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
-				</collision>
-			</xacro:if>
+			<!-- Geometry -->
+			<visual>
+				<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+				<material name="${material}"/>
+			</visual>
+			<!-- Collision -->
+			<collision>
+				<xacro:geom mesh="0" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+			</collision>
 		</link>
-    </xacro:macro>
-
-    
-
-
+	</xacro:macro>
 </robot>
