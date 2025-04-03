@@ -77,7 +77,7 @@ objects:
         # Inherits from the default joint properties
         <<: *JOINT_DEFAULT
         joint_type: 'continuous'
-        figure: 'cylinder'
+        figure: 'sphere'
         # The wheel radius in meters
         radius: 0.1
         # The wheel length in meters
@@ -100,7 +100,7 @@ objects:
             iyy: 0.0052108
             iyz: 1.5911E-17
             izz: 0.0096226
-            xyz: "-2.7756E-17 0 0"
+            xyz: "0 0 0" #-2.7756E-17 0
             rpy: "0 0 0"
 
     pivot: # modeled as cuboid with a revolute joint

@@ -2,43 +2,55 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<!-- Package Path -->
-	<xacro:property name="package" value="$(find kart_description)"/>
+	<xacro:property name="package" value="$(find kart_description)" />
 
 	<!-- Load the properties for the object to render -->
-	<xacro:property name="props_file" value="${package}/config/properties.yaml"/>
-	<xacro:property name="properties" value="${xacro.load_yaml(props_file)}"/>
-	<xacro:property name="obj_props" value="${properties['objects']}"/>
+	<xacro:property name="props_file" value="${package}/config/properties.yaml" />
+	<xacro:property name="properties" value="${xacro.load_yaml(props_file)}" />
+	<xacro:property name="obj_props" value="${properties['objects']}" />
 
 	<!-- Include Materials xacro file -->
 	<!-- <xacro:include filename="${package}/urdf/materials.urdf.xacro"/>-->
-	<xacro:property name="materials" value="${properties['materials']}"/>
+	<xacro:property name="materials" value="${properties['materials']}" />
 
 	<!-- Geometry Collision/Visual Macro -->
 	<xacro:macro
 		name="geom"
 		params="mesh:=1 scale_factor:=^|1.0 reflect:=^|1.0 props:=^ model:=^|'base'">
 		<xacro:if value="${mesh == 0}">
-			<origin xyz = "${props['v_origin']['v_x']} ${props['v_origin']['v_y']} ${props['v_origin']['v_z']}" rpy= "${props['v_origin']['v_roll']} ${props['v_origin']['v_pitch']} ${props['v_origin']['v_yaw']}"/>
+			<origin
+				xyz="${props['v_origin']['v_x']} ${props['v_origin']['v_y']} ${props['v_origin']['v_z']}"
+				rpy="${props['v_origin']['v_roll']} ${props['v_origin']['v_pitch']} ${props['v_origin']['v_yaw']}" />
 		</xacro:if>
 		<xacro:if value="${mesh == 1}">
-			<origin xyz = "0 0 0" rpy= "0 0 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0" />
 		</xacro:if>
 		<geometry>
 			<!-- Check if a segment with a mesh is being loaded -->
 			<xacro:if value="${mesh == 1}">
 				<!-- Load the mesh -->
-				<xacro:property name="mesh" value="${model}"/>
-				<mesh filename="package://${package.split('/')[-1]}/meshes/${mesh}.STL"/>
-				<!--scale="${scale_factor*0.001*reflect} ${scale_factor*0.001} ${scale_factor*0.001}"-->
+				<xacro:property name="mesh" value="${model}" />
+				<mesh filename="package://${package.split('/')[-1]}/meshes/${mesh}.STL" />
+				<!--scale="${scale_factor*0.001*reflect}
+				${scale_factor*0.001} ${scale_factor*0.001}"-->
 			</xacro:if>
 			<!-- Check which type of object is being loaded by its properties -->
 			<xacro:if value="${mesh == 0}">
 				<xacro:if value="${props['figure'] == 'cylinder'}">
-					<cylinder radius="${props['radius']*scale_factor}" length="${props['length']*scale_factor}"/>
+					<cylinder radius="${props['radius']*scale_factor}"
+						length="${props['length']*scale_factor}" />
 				</xacro:if>
 				<xacro:if value="${props['figure'] == 'box'}">
-					<box size="${props['width']} ${props['length']} ${props['height']}"/>
-					<origin xyz="0 0 ${props['height']/2.0}" rpy="0 0 0"/>
+					<box size="${props['width']} ${props['length']} ${props['height']}" />
+					<origin xyz="0 0 ${props['height']/2.0}" rpy="0 0 0" />
+				</xacro:if>
+				<xacro:if value="${props['figure'] == 'sphere'}">
+					<sphere radius="${props['radius']*scale_factor}" />
+				</xacro:if>
+				<xacro:if value="${props['figure'] == 'mesh'}">
+					<mesh filename="package://${package.split('/')[-1]}/meshes/${model}.STL" />
+					<!--scale="${scale_factor*0.001*reflect}
+					${scale_factor*0.001} ${scale_factor*0.001}"-->
 				</xacro:if>
 			</xacro:if>
 		</geometry>
@@ -59,42 +71,47 @@
 				*origin *axis
 				model:=^|'base'
 				joint link parent">
-		<xacro:property name="props" value="${obj_props[model]}"/>
-		<xacro:property name="II" value="${props['inertia']}"/>
-		<xacro:property name="color" value="${materials[material]['color']}"/>
+		<xacro:property name="props" value="${obj_props[model]}" />
+		<xacro:property name="II" value="${props['inertia']}" />
+		<xacro:property name="color" value="${materials[material]['color']}" />
 		<!-- Joint Definition -->
 		<joint name="${joint_prefix}${model}_joint" type="${props['joint_type']}">
-			<parent link="${parent}"/>
-			<child link="${link_prefix}${model}_link"/>
-			<xacro:insert_block name="origin"/>
-			<xacro:insert_block name="axis"/>
+			<parent link="${parent}" />
+			<child link="${link_prefix}${model}_link" />
+			<xacro:insert_block name="origin" />
+			<xacro:insert_block name="axis" />
 			<!-- add bounds for the joint if present in the config file -->
 			<xacro:if value="${'bounds' in props.keys()}">
-				<limit lower="${props['bounds']['lower']*pi/180}" upper="${props['bounds']['upper']*pi/180}" effort="${props['effort']}" velocity="${props['velocity']}"/>
+				<limit lower="${props['bounds']['lower']*pi/180}"
+					upper="${props['bounds']['upper']*pi/180}" effort="${props['effort']}"
+					velocity="${props['velocity']}" />
 			</xacro:if>
 			<!-- If not, just add limits and dynamics factors -->
 			<xacro:if value="${'bounds' not in props.keys()}">
-				<limit effort="${props['effort']}" velocity="${props['velocity']}"/>
+				<limit effort="${props['effort']}" velocity="${props['velocity']}" />
 			</xacro:if>
-			<dynamics damping="${props['damping']}" friction="${props['friction']}"/>
+			<dynamics damping="${props['damping']}" friction="${props['friction']}" />
 		</joint>
 		<!-- Link Definition -->
 		<link name="${link_prefix}${model}_link">
-			<intertial>
-				<mass value="${props['mass']}"/>
-				<inertia ixx="${II['ixx']}" iyy="${II['iyy']}" izz="${II['izz']}" ixy="${II['ixy']}" iyz="${II['iyz']}" ixz="${II['ixz']}"/>
-				<origin xyz="${II['xyz']}" rpy="${II['rpy']}"/>
-			</intertial>
+			<inertial>
+				<mass value="${props['mass']}" />
+				<inertia ixx="${II['ixx']}" iyy="${II['iyy']}" izz="${II['izz']}" ixy="${II['ixy']}"
+					iyz="${II['iyz']}" ixz="${II['ixz']}" />
+				<origin xyz="${II['xyz']}" rpy="${II['rpy']}" />
+			</inertial>
 			<!-- Geometry -->
 			<visual>
-				<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+				<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}"
+					model="${model}" />
 				<material name="${material}">
 					<color rgba="${color['r']} ${color['g']} ${color['b']} ${color['a']}" />
 				</material>
 			</visual>
 			<!-- Collision -->
 			<collision>
-				<xacro:geom mesh="0" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
+				<xacro:geom mesh="0" scale_factor="${scale_factor}" reflect="${reflect}"
+					model="${model}" />
 			</collision>
 		</link>
 	</xacro:macro>

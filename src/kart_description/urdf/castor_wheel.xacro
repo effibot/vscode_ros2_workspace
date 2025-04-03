@@ -9,38 +9,32 @@
     <xacro:include filename="${package}/urdf/base_segment.xacro"/>
 
     <!-- CASTOR WHEEL MODEL -->
-    <xacro:macro name="castor_wheel"
-                params="parent
-                        link_prefix:=^|''
-                        joint_prefix:=^|''
-                        *origin
-                        scale_factor:=^|1.0">
+    <xacro:macro name="castor_wheel" params="parent link_prefix:=^|'' joint_prefix:=^|''
+                        *origin scale_factor:=^|1.0">
         <!-- PIVOT -->
         <xacro:segment joint="pivot" link="pivot" parent="${parent}" model="pivot" material="metal" mesh="1">
-                <!-- This origin comes from the file where the macro will be expanded -->
-                <xacro:insert_block name="origin"/>
-                <!-- The rotation happens on the Z-axis -->
-                <axis xyz="0.0 0.0 1.0"/>
+            <!-- This origin comes from the file where the macro will be expanded -->
+            <xacro:insert_block name="origin"/>
+            <!-- The rotation happens on the Z-axis -->
+            <axis xyz="0.0 0.0 1.0"/>
         </xacro:segment>
         <!-- WHEEL -->
         <xacro:segment joint="wheel" link="wheel" parent="${link_prefix}pivot_link" model="wheel" material="rubber" mesh="1">
-                <!--
+            <!--
                     This origin is fixed and belongs to the pivotal joint.
                     To rotate the wheel around its own axis, we need to rotate
                     the mesh around the X-axis
                 -->
-                <origin xyz="-0.059 0 -0.14065" rpy="${pi/2} 0.0 0.0"/>
-                <!-- The rotation happens on the Z-axis -->
-                <axis xyz="0.0 0.0 1.0"/>
+            <origin xyz="-0.059 0 -0.14065" rpy="${pi/2} 0.0 0.0"/>
+            <!-- The rotation happens on the Z-axis -->
+            <axis xyz="0.0 0.0 1.0"/>
         </xacro:segment>
     </xacro:macro>
 
     <!-- Call the wheel macro -->
-    
-    <!--<link name="base_link"/>
-    <xacro:castor_wheel parent="base_link"
-                        joint_prefix="fr_" link_prefix="fr_">
+    <link name="base_link"/>
+    <xacro:castor_wheel parent="base_link" joint_prefix="fr_" link_prefix="fr_">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
     </xacro:castor_wheel>
-    -->
+    
 </robot>
