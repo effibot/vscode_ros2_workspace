@@ -1,3 +1,41 @@
+materials:
+    default: &MATERIAL_DEFAULT
+        # The material name
+        name: 'default'
+        # The material color in RGBA format
+        color:
+            r: 0.5
+            g: 0.5
+            b: 0.5
+            a: 1.0
+        # The material texture
+        texture: ''
+    rubber:
+        <<: *MATERIAL_DEFAULT
+        name: 'rubber'
+        color:
+            r: 0.9
+            g: 0.4
+            b: 0.1
+            a: 1.0
+    plastic:
+        <<: *MATERIAL_DEFAULT
+        name: 'plastic'
+        color:
+            r: 0.1
+            g: 0.1
+            b: 0.9
+            a: 1.0
+    metal:
+        <<: *MATERIAL_DEFAULT
+        name: 'metal'
+        color:
+            r: 0.8
+            g: 0.8
+            b: 0.8
+            a: 1.0
+
+
 joints:
     default: &JOINT_DEFAULT
         effort: 100

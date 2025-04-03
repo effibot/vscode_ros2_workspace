@@ -10,12 +10,13 @@
 	<xacro:property name="obj_props" value="${properties['objects']}"/>
 
 	<!-- Include Materials xacro file -->
-	<xacro:include filename="${package}/urdf/materials.urdf.xacro"/>
+	<!-- <xacro:include filename="${package}/urdf/materials.urdf.xacro"/>-->
+	<xacro:property name="materials" value="${properties['materials']}"/>
 
 	<!-- Geometry Collision/Visual Macro -->
 	<xacro:macro
 		name="geom"
-		params="mesh:=1 scale_factor:=^|1.0 reflect:=^ props:=^ model:=^|'base'">
+		params="mesh:=1 scale_factor:=^|1.0 reflect:=^|1.0 props:=^ model:=^|'base'">
 		<xacro:if value="${mesh == 0}">
 			<origin xyz = "${props['v_origin']['v_x']} ${props['v_origin']['v_y']} ${props['v_origin']['v_z']}" rpy= "${props['v_origin']['v_roll']} ${props['v_origin']['v_pitch']} ${props['v_origin']['v_yaw']}"/>
 		</xacro:if>
@@ -51,7 +52,7 @@
 		name="segment"
 		params="link_prefix:=^|''
 				joint_prefix:=^|''
-				reflect:=^!1
+				reflect:=^|1
 				scale_factor:=^|1.0
 				mesh:=1
 				material:=^|''
@@ -60,7 +61,7 @@
 				joint link parent">
 		<xacro:property name="props" value="${obj_props[model]}"/>
 		<xacro:property name="II" value="${props['inertia']}"/>
-
+		<xacro:property name="color" value="${materials[material]['color']}"/>
 		<!-- Joint Definition -->
 		<joint name="${joint_prefix}${model}_joint" type="${props['joint_type']}">
 			<parent link="${parent}"/>
@@ -87,7 +88,9 @@
 			<!-- Geometry -->
 			<visual>
 				<xacro:geom mesh="${mesh}" scale_factor="${scale_factor}" reflect="${reflect}" model="${model}"/>
-				<material name="${material}"/>
+				<material name="${material}">
+					<color rgba="${color['r']} ${color['g']} ${color['b']} ${color['a']}" />
+				</material>
 			</visual>
 			<!-- Collision -->
 			<collision>

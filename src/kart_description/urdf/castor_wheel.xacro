@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <robot name="castor_wheel"
     xmlns:xacro="http://ros.org/wiki/xacro">
-    <!-- xacro description of a castor wheel segment -->
-    <!-- A segment is composed of a joint and the attached link -->
+
+    <!-- Package Path -->
     <xacro:property name="package" value="$(find kart_description)"/>
 
     <!-- Include segment xacro -->
-    <xacro:include filename="${package}/urdf/base_segment.urdf.xacro"/>
+    <xacro:include filename="${package}/urdf/base_segment.xacro"/>
+
     <!-- CASTOR WHEEL MODEL -->
     <xacro:macro name="castor_wheel"
                 params="parent
@@ -15,14 +16,14 @@
                         *origin
                         scale_factor:=^|1.0">
         <!-- PIVOT -->
-        <xacro:segment joint="pivot" link="pivot" parent="${parent}" model="pivot" material="Aluminum" mesh="1">
+        <xacro:segment joint="pivot" link="pivot" parent="${parent}" model="pivot" material="metal" mesh="1">
                 <!-- This origin comes from the file where the macro will be expanded -->
                 <xacro:insert_block name="origin"/>
                 <!-- The rotation happens on the Z-axis -->
                 <axis xyz="0.0 0.0 1.0"/>
         </xacro:segment>
         <!-- WHEEL -->
-        <xacro:segment joint="wheel" link="wheel" parent="${link_prefix}pivot_link" model="wheel" material="Rubber" mesh="1">
+        <xacro:segment joint="wheel" link="wheel" parent="${link_prefix}pivot_link" model="wheel" material="rubber" mesh="1">
                 <!--
                     This origin is fixed and belongs to the pivotal joint.
                     To rotate the wheel around its own axis, we need to rotate
@@ -35,9 +36,11 @@
     </xacro:macro>
 
     <!-- Call the wheel macro -->
-    <link name="base_link"/>
+    
+    <!--<link name="base_link"/>
     <xacro:castor_wheel parent="base_link"
                         joint_prefix="fr_" link_prefix="fr_">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
     </xacro:castor_wheel>
+    -->
 </robot>
