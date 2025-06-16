@@ -20,10 +20,12 @@ services:
       - type: bind
         source: /tmp/.X11-unix
         target: /tmp/.X11-unix
+        consistency: cached
       # uncomment the following line if you want to use the WSLg GUI
       # - type: bind
       #   source: /mnt/wslg
       #   target: /mnt/wslg
+      #   consistency: cached
       # uncomment to use intel iGPU
       # - type: bind
       #   source: /dev/dri

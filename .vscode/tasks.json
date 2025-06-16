@@ -16,6 +16,28 @@
             "problemMatcher": "$gcc"
         },
         {
+            "label": "build selected package",
+            "detail": "Build a specific ros 2 package from the workspace",
+            "type": "shell",
+            "command": "colcon",
+            "args": [
+                "build",
+                "--packages-select",
+                "${input:packageName}",
+                "--symlink-install",
+                "--merge-install",
+                "--cmake-args",
+                "-DCMAKE_BUILD_TYPE=${env:DEFAULT_CMAKE_BUILD_TYPE}",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=On",
+                "-DTEST_INTEGRATION=On"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": "$gcc"            
+        },
+        {
             "label": "debug",
             "detail": "Build workspace (debug)",
             "type": "shell",
@@ -63,17 +85,35 @@
         },
         // Linting and static code analysis tasks
         {
-            "label": "fix",
-            "detail": "Reformat files with uncrustify.",
+            "label": "uncrustify format package",
+            "detail": "Reformat all cpp files in a package with uncrustify.",
             "type": "shell",
-            "command": "ament_uncrustify --reformat src/",
+            "command": "ament_uncrustify",
+            "args": [
+                "--reformat",
+                "src/${input:packageName}"
+            ],
             "problemMatcher": []
         },
         {
-            "label": "uncrustify",
-            "detail": "Lint files with uncrustify.",
+            "label": "uncrustify format file",
+            "detail": "Reformat the current cpp file with uncrustify.",
             "type": "shell",
-            "command": "ament_uncrustify src/",
+            "command": "ament_uncrustify",
+            "args": [
+                "--reformat",
+                "${relativeFile}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "uncrustify package",
+            "detail": "Lint all cpp files in package with uncrustify.",
+            "type": "shell",
+            "command": "ament_uncrustify",
+            "args": [
+                "src/${input:packageName}"
+            ],
             "presentation": {
                 "panel": "dedicated",
                 "reveal": "silent",
@@ -97,11 +137,41 @@
             ]
         },
         {
-            "label": "cpplint",
-            "detail": "Lint files with cpplint.",
+            "label": "uncrustify file",
+            "detail": "Lint the current cpp file with uncrustify.",
+            "type": "shell",
+            "command": "ament_uncrustify",
+            "args": [
+                "${relativeFile}"
+            ],
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "uncrustify",
+                    "source": "uncrustify",
+                    "fileLocation": "relative",
+                    "pattern": [
+                        // just the file name message
+                        {
+                            "regexp": "^(.*)'(.*)':",
+                            "kind": "file",
+                            "file": 2,
+                            "message": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "cpplint package",
+            "detail": "Lint files with cpplint in a package.",
             "type": "ament",
             "task": "cpplint",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_cpplint",
             "presentation": {
                 "panel": "dedicated",
@@ -110,11 +180,24 @@
             },
         },
         {
-            "label": "cppcheck",
-            "detail": "Run static code checker cppcheck.",
+            "label": "cpplint file",
+            "detail": "Lint the current file with cpplint.",
+            "type": "ament",
+            "task": "cpplint",
+            "path": "${relativeFile}",
+            "problemMatcher": "$ament_cpplint",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+        },
+        {
+            "label": "cppcheck package",
+            "detail": "Run static code checker with cppcheck in a package.",
             "type": "ament",
             "task": "cppcheck",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_cppcheck",
             "presentation": {
                 "panel": "dedicated",
@@ -128,11 +211,29 @@
             }
         },
         {
-            "label": "lint_cmake",
-            "detail": "Run lint on cmake files.",
+            "label": "cppcheck file",
+            "detail": "Run static code checker with cppcheck on the current file.",
+            "type": "ament",
+            "task": "cppcheck",
+            "path": "${relativeFile}",
+            "problemMatcher": "$ament_cppcheck",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "options": {
+                "env": {
+                    "AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS": "1"
+                }
+            }
+        },
+        {
+            "label": "lint_cmake package",
+            "detail": "Run lint on cmake files in a package.",
             "type": "ament",
             "task": "lint_cmake",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_lint_cmake",
             "presentation": {
                 "panel": "dedicated",
@@ -141,11 +242,11 @@
             }
         },
         {
-            "label": "flake8",
-            "detail": "Run flake8 on python files.",
+            "label": "flake8 package",
+            "detail": "Run flake8 on python files in a package.",
             "type": "ament",
             "task": "flake8",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_flake8",
             "presentation": {
                 "panel": "dedicated",
@@ -154,11 +255,24 @@
             }
         },
         {
-            "label": "pep257",
-            "detail": "Run pep257 on python files.",
+            "label": "flake8 file",
+            "detail": "Run flake8 on the current python file.",
+            "type": "ament",
+            "task": "flake8",
+            "path": "${relativeFile}",
+            "problemMatcher": "$ament_flake8",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            }
+        },
+        {
+            "label": "pep257 package",
+            "detail": "Run pep257 on python files in a package.",
             "type": "ament",
             "task": "pep257",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_pep257",
             "presentation": {
                 "panel": "dedicated",
@@ -167,11 +281,24 @@
             }
         },
         {
-            "label": "xmllint",
+            "label": "pep257 file",
+            "detail": "Run pep257 on the current python file.",
+            "type": "ament",
+            "task": "pep257",
+            "path": "${relativeFile}",
+            "problemMatcher": "$ament_pep257",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            }
+        },
+        {
+            "label": "xmllint package",
             "detail": "Run xmllint on xml files.",
             "type": "ament",
             "task": "xmllint",
-            "path": "src/",
+            "path": "src/${input:packageName}",
             "problemMatcher": "$ament_xmllint",
             "presentation": {
                 "panel": "dedicated",
@@ -180,16 +307,16 @@
             }
         },
         {
-            "label": "lint all",
-            "detail": "Run all linters.",
+            "label": "lint package",
+            "detail": "Run all linters on package.",
             "dependsOn": [
-                "cppcheck",
-                "cpplint",
-                "flake8",
-                "lint_cmake",
-                "pep257",
-                "xmllint",
-                "uncrustify"
+                "cppcheck package",
+                "cpplint package",
+                "flake8 package",
+                "lint_cmake package",
+                "pep257 package",
+                "xmllint package",
+                "uncrustify package"
             ],
             "problemMatcher": []
         },
@@ -198,14 +325,14 @@
             "label": "new ament_cmake package",
             "detail": "Create a new ROS cpp package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --destination-directory src --build-type ament_cmake ${input:package}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_cmake ${input:newPackageName}",
             "problemMatcher": []
         },
         {
             "label": "new ament_python package",
             "detail": "Create a new ROS python package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --destination-directory src --build-type ament_python ${input:package}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_python ${input:newPackageName}",
             "problemMatcher": []
         },
         {
@@ -246,9 +373,19 @@
     ],
     "inputs": [
         {
-            "id": "package",
+            "id": "newPackageName",
             "type": "promptString",
-            "description": "Package name"
+            "description": "Enter the name of the new package to create",
+            "default": "my_new_package"
+        },
+        {
+            "id": "packageName",
+            "type": "pickString",
+            "description": "Select a package",
+            "options": [
+                "my_package",
+            ],
+            "default": "my_package"
         }
     ]
 }
