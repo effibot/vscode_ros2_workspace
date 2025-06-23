@@ -39,6 +39,7 @@ RUN apt-get update \
 RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-argcomplete \
+    python3-rosdoc2 \
     htop \
     git \
     vim \

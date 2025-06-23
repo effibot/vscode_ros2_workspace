@@ -2,3 +2,9 @@ build/*
 install/*
 log/*
 site/*
+docs/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

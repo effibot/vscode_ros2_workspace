@@ -9,9 +9,7 @@
     "updateContentCommand": "",
     "workspaceFolder": "/ros_ws",
     // Defualt environment variables for the container
-    "containerEnv": {
-        "DEFAULT_CMAKE_BUILD_TYPE": "RelWithDebInfo"
-    },
+    "containerEnv": {},
     "customizations": {
         "vscode": {
             "settings": {

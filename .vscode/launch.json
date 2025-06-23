@@ -19,7 +19,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/install/lib/${input:package}/${input:program}",
       "args": [],
-      "preLaunchTask": "build",
+      "preLaunchTask": "build pkg debug",
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
       "externalConsole": false,
@@ -32,38 +32,39 @@
         }
       ]
     },
-    {
-      "name": "(gdb) Launch (isolated-install)",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/install/${input:package}/lib/${input:package}/${input:program}",
-      "args": [],
-      "preLaunchTask": "build",
-      "stopAtEntry": true,
-      "cwd": "${workspaceFolder}",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
-    },
+    // FIXME: Add support for isolated builds
+    // {
+    //   "name": "(gdb) Launch (isolated-install)",
+    //   "type": "cppdbg",
+    //   "request": "launch",
+    //   "program": "${workspaceFolder}/install/${input:package}/lib/${input:package}/${input:program}",
+    //   "args": [],
+    //   "preLaunchTask": "build pkg debug",
+    //   "stopAtEntry": true,
+    //   "cwd": "${workspaceFolder}",
+    //   "externalConsole": false,
+    //   "MIMode": "gdb",
+    //   "setupCommands": [
+    //     {
+    //       "description": "Enable pretty-printing for gdb",
+    //       "text": "-enable-pretty-printing",
+    //       "ignoreFailures": true
+    //     }
+    //   ]
+    // },
     //Example of a ROS Launch file
     {
       "name": "ROS: Launch File (merge-install)",
       "type": "ros",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "build pkg",
       "target": "${workspaceFolder}/install/share/${input:package}/launch/${input:ros_launch}",
     },
     {
       "name": "ROS: Launch File (isolated-install)",
       "type": "ros",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "build pkg",
       "target": "${workspaceFolder}/install/${input:package}/share/${input:package}/launch/${input:ros_launch}",
     },
   ],
@@ -84,7 +85,7 @@
       "id": "ros_launch",
       "type": "promptString",
       "description": "ROS launch name",
-      "default": "file_name_launch.py"
+      "default": "file_name.launch.py"
     }
   ]
 }

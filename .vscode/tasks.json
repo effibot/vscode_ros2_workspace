@@ -5,10 +5,10 @@
     "tasks": [
         // Build tasks
         {
-            "label": "build",
-            "detail": "Build workspace (default)",
+            "label": "build workspace",
+            "detail": "Build the workspace (default)",
             "type": "shell",
-            "command": ". /ros_ws/.devcontainer/scripts/build.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh all",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,38 +16,43 @@
             "problemMatcher": "$gcc"
         },
         {
-            "label": "build selected package",
-            "detail": "Build a specific ros 2 package from the workspace",
+            "label": "build workspace debug",
+            "detail": "Build the workspace (debug)",
             "type": "shell",
-            "command": "colcon",
-            "args": [
-                "build",
-                "--packages-select",
-                "${input:packageName}",
-                "--symlink-install",
-                "--merge-install",
-                "--cmake-args",
-                "-DCMAKE_BUILD_TYPE=${env:DEFAULT_CMAKE_BUILD_TYPE}",
-                "-DCMAKE_EXPORT_COMPILE_COMMANDS=On",
-                "-DTEST_INTEGRATION=On"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": "$gcc"            
-        },
-        {
-            "label": "debug",
-            "detail": "Build workspace (debug)",
-            "type": "shell",
-            "command": ". /ros_ws/.devcontainer/scripts/build.sh",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh all",
             "options": {
                 "env": {
                     "BUILD_TYPE": "Debug"
                 }
             },
             "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build pkg",
+            "detail": "Build a specific package from the workspace.",
+            "type": "shell",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh ${input:packageName}",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build pkg debug",
+            "detail": "Build a specific package from the workspace (debug).",
+            "type": "shell",
+            "command": ". /ros_ws/.devcontainer/scripts/build.sh ${input:packageName}",
+            "options": {
+                "env": {
+                    "BUILD_TYPE": "Debug"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
             "problemMatcher": "$gcc"
         },
         // Test tasks
@@ -71,21 +76,21 @@
         },
         {
             "label": "purge",
-            "detail": "Purge workspace by deleting all generated files.",
+            "detail": "Purge the workspace by deleting all generated files.",
             "type": "shell",
             "command": "sudo rm -fr build install log; sudo py3clean .",
             "problemMatcher": []
         },
         {
             "label": "source",
-            "detail": "Source workspace",
+            "detail": "Source the workspace",
             "type": "shell",
             "command": "source /opt/ros/jazzy/setup.bash",
             "problemMatcher": []
         },
         // Linting and static code analysis tasks
         {
-            "label": "uncrustify format package",
+            "label": "uncrustify format pkg",
             "detail": "Reformat all cpp files in a package with uncrustify.",
             "type": "shell",
             "command": "ament_uncrustify",
@@ -107,8 +112,8 @@
             "problemMatcher": []
         },
         {
-            "label": "uncrustify package",
-            "detail": "Lint all cpp files in package with uncrustify.",
+            "label": "uncrustify pkg",
+            "detail": "Lint all cpp files in a package with uncrustify.",
             "type": "shell",
             "command": "ament_uncrustify",
             "args": [
@@ -167,8 +172,8 @@
             ]
         },
         {
-            "label": "cpplint package",
-            "detail": "Lint files with cpplint in a package.",
+            "label": "cpplint pkg",
+            "detail": "Lint cpp files with cpplint in a package.",
             "type": "ament",
             "task": "cpplint",
             "path": "src/${input:packageName}",
@@ -193,7 +198,7 @@
             },
         },
         {
-            "label": "cppcheck package",
+            "label": "cppcheck pkg",
             "detail": "Run static code checker with cppcheck in a package.",
             "type": "ament",
             "task": "cppcheck",
@@ -229,7 +234,7 @@
             }
         },
         {
-            "label": "lint_cmake package",
+            "label": "lint_cmake pkg",
             "detail": "Run lint on cmake files in a package.",
             "type": "ament",
             "task": "lint_cmake",
@@ -242,7 +247,7 @@
             }
         },
         {
-            "label": "flake8 package",
+            "label": "flake8 pkg",
             "detail": "Run flake8 on python files in a package.",
             "type": "ament",
             "task": "flake8",
@@ -268,7 +273,7 @@
             }
         },
         {
-            "label": "pep257 package",
+            "label": "pep257 pkg",
             "detail": "Run pep257 on python files in a package.",
             "type": "ament",
             "task": "pep257",
@@ -294,8 +299,8 @@
             }
         },
         {
-            "label": "xmllint package",
-            "detail": "Run xmllint on xml files.",
+            "label": "xmllint pkg",
+            "detail": "Run xmllint on xml files in a package.",
             "type": "ament",
             "task": "xmllint",
             "path": "src/${input:packageName}",
@@ -307,16 +312,47 @@
             }
         },
         {
-            "label": "lint package",
-            "detail": "Run all linters on package.",
+            "label": "lint pkg",
+            "detail": "Run all linters on a package.",
             "dependsOn": [
-                "cppcheck package",
-                "cpplint package",
-                "flake8 package",
-                "lint_cmake package",
-                "pep257 package",
-                "xmllint package",
-                "uncrustify package"
+                "cppcheck pkg",
+                "cpplint pkg",
+                "flake8 pkg",
+                "lint_cmake pkg",
+                "pep257 pkg",
+                "xmllint pkg",
+                "uncrustify pkg"
+            ],
+            "problemMatcher": []
+        },
+        // Documentation
+        {
+            "label": "create pkg doc config",
+            "detail": "Create a default documentation config for a package.",
+            "type": "shell",
+            "command": "rosdoc2",
+            "args": [
+                "default_config",
+                "--package-path",
+                "/ros_ws/src/${input:packageName}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "build pkg doc",
+            "detail": "Build the documentation for a package.",
+            "type": "shell",
+            "command": "rosdoc2",
+            "args": [
+                "build",
+                "--package-path",
+                "/ros_ws/src/${input:packageName}",
+                "--output-directory",
+                "/ros_ws/docs/out/",
+                "--cross-reference-directory",
+                "/ros_ws/docs/cross_reference",
+                "--doc-build-directory",
+                "/ros_ws/docs/build",
             ],
             "problemMatcher": []
         },
@@ -325,14 +361,14 @@
             "label": "new ament_cmake package",
             "detail": "Create a new ROS cpp package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --destination-directory src --build-type ament_cmake ${input:newPackageName}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_cmake ${input:packageName}",
             "problemMatcher": []
         },
         {
             "label": "new ament_python package",
             "detail": "Create a new ROS python package from a template.",
             "type": "shell",
-            "command": "ros2 pkg create --destination-directory src --build-type ament_python ${input:newPackageName}",
+            "command": "ros2 pkg create --destination-directory src --build-type ament_python ${input:packageName}",
             "problemMatcher": []
         },
         {
@@ -373,18 +409,9 @@
     ],
     "inputs": [
         {
-            "id": "newPackageName",
-            "type": "promptString",
-            "description": "Enter the name of the new package to create",
-            "default": "my_new_package"
-        },
-        {
             "id": "packageName",
-            "type": "pickString",
-            "description": "Select a package",
-            "options": [
-                "my_package",
-            ],
+            "type": "promptString",
+            "description": "Enter the name of the package",
             "default": "my_package"
         }
     ]

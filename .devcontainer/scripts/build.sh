@@ -1,10 +1,46 @@
-#!/bin/bash
+# Copyright 2025 byq77
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#!/usr/bin/env bash
+
 set -e
 
-# Set the default build type
-BUILD_TYPE=RelWithDebInfo
-colcon build \
+if [ -z "${1}" ]; then
+    echo "Usage: $0 <package_name|all>"
+    echo "Example: $0 my_package"
+    exit 1
+fi
+
+BUILD_TYPE="${BUILD_TYPE:-RelWithDebInfo}"
+
+colcon_build() {
+    local extra_args="$1"
+    colcon build \
         --merge-install \
         --symlink-install \
+        --base-paths "/ros_ws/src" \
         --cmake-args "-DCMAKE_BUILD_TYPE=$BUILD_TYPE" "-DCMAKE_EXPORT_COMPILE_COMMANDS=On" \
-        -Wall -Wextra -Wpedantic
+        -Wall -Wextra -Wpedantic \
+        "-DTEST_INTEGRATION=On" \
+        $extra_args
+}
+
+if [ "${1}" == "all" ]; then
+    echo "Building all packages in the workspace with build type: ${BUILD_TYPE}."
+    colcon_build ""
+else
+    PKG="${1}"
+    echo "Building package: $PKG with build type: ${BUILD_TYPE}"
+    colcon_build "--packages-select $PKG"
+fi
