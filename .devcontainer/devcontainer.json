@@ -55,7 +55,8 @@
                 "zachflower.uncrustify",
                 "tomoki1207.pdf",
                 "ms-vscode.makefile-tools",
-                "morningfrog.urdf-visualizer"
+                "morningfrog.urdf-visualizer",
+                "Ranch-Hand-Robotics.rde-pack"
             ]
         }
     }

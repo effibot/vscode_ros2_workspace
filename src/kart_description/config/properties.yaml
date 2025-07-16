@@ -136,3 +136,32 @@ objects:
             izz: 0.00926970619031274
             xyz: "-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"
             rpy: "0 0 0"
+    kart:
+        # Inherits from the default joint properties
+        <<: *JOINT_DEFAULT
+        joint_type: 'fixed'
+        figure: 'mesh'
+        # The sizes of the cuboid in meters
+        width: 0.71
+        length: 0.4655
+        height: 0.8
+        # visualization properties
+        v_origin: # describe the visual origin
+            v_x: 0    # x-axis
+            v_y: 0    # y-axis
+            v_z: 0    # z-axis
+            v_roll: 0    # roll
+            v_pitch: 0    # pitch
+            v_yaw: 0    # yaw
+        # The kart mass in kg
+        mass: 29.552
+        # The kart inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
+        inertia:
+            ixx: 3.67
+            ixy: 0
+            ixz: -0.05
+            iyy: 4.66
+            iyz: 0
+            izz: 2.4
+            xyz: "0 0 0"
+            rpy: "0 0 0"

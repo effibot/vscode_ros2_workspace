@@ -31,10 +31,10 @@
         </xacro:segment>
     </xacro:macro>
 
-    <!-- Call the wheel macro -->
+    <!-- Call the wheel macro 
     <link name="base_link"/>
     <xacro:castor_wheel parent="base_link" joint_prefix="fr_" link_prefix="fr_">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-    </xacro:castor_wheel>
+    </xacro:castor_wheel>-->
     
 </robot>

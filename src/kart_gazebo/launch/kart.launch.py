@@ -15,7 +15,7 @@ def generate_launch_description():
     pkg_gazebo_path = get_package_share_directory('kart_gazebo')
 
     gazebo_models_path, ignore_last_dir = os.path.split(pkg_urdf_path)
-    #os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
+    os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     rviz_launch_arg = DeclareLaunchArgument(
         'rviz', default_value='true',
@@ -28,7 +28,7 @@ def generate_launch_description():
     )
 
     model_arg = DeclareLaunchArgument(
-        'model', default_value='kart_urdf.urdf',
+        'model', default_value='base.urdf',
         description='Name of the URDF description to load'
     )
 

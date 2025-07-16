@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="kart_base"
+    xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Package Path -->
+    <xacro:property name="package" value="$(find kart_description)"/>
+
+    <!-- Include segment xacro -->
+    <xacro:include filename="${package}/urdf/base_segment.xacro"/>
+
+    <!-- KART BASE MODEL -->
+    <xacro:macro name="kart_base" params="parent link_prefix:=^|'' joint_prefix:=^|'' *origin scale_factor:=^|1.0">
+        <!-- BASE -->
+        <xacro:segment joint="base_joint" link="base_link" parent="${parent}" model="kart" material="metal" mesh="1">
+            <!-- This origin comes from the file where the macro will be expanded -->
+            <xacro:insert_block name="origin"/>
+            <!-- The rotation happens on the Z-axis -->
+            <axis xyz="0.0 0.0 1.0"/>
+        </xacro:segment>
+    </xacro:macro>
+
+    <!-- Call the base macro -->
+    <link name="base_footprint"/>
+    <xacro:kart_base parent="base_footprint" joint_prefix="" link_prefix="">
+        <origin xyz="0 0 0.3" rpy="0.0 0.0 0.0"/>
+    </xacro:kart_base>
+
+    <!-- Include the wheels -->
+    <xacro:include filename="${package}/urdf/castor_wheel.xacro"/>
+    <xacro:castor_wheel parent="base_link" joint_prefix="fr_" link_prefix="fr_">
+        <origin xyz="0.2675 -0.14775 0" rpy="0.0 0.0 0.0"/>
+    </xacro:castor_wheel>
+
+</robot>
