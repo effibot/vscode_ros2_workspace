@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="battery"
+    xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Package Path -->
+    <xacro:property name="package" value="$(find kart_description)"/>
+
+    <!-- Include segment xacro -->
+    <xacro:include filename="${package}/urdf/base_segment.xacro"/>
+
+    <!-- BATTERY MODEL -->
+    <xacro:macro name="battery" params="parent link_prefix:=^|'' joint_prefix:=^|'' *origin scale_factor:=^|1.0">
+        <!-- BATTERY -->
+        <xacro:segment parent="${parent}" model="battery" material="plastic" mesh="1">
+            <!-- This origin comes from the file where the macro will be expanded -->
+            <xacro:insert_block name="origin"/>
+            <!-- The rotation happens on the Z-axis -->
+            <axis xyz="0.0 0.0 1.0"/>
+        </xacro:segment>
+    </xacro:macro>
+
+    <!-- Call the battery macro
+
+    <link name="base_link"/>
+    <xacro:battery parent="base_link" joint_prefix="bat_" link_prefix=" bat_">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </xacro:battery> -->
+</robot>

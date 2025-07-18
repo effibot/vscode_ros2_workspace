@@ -46,13 +46,12 @@ joints:
 objects:
     # base object in case a model is not mapped
     base: # a generic cube of L=0.1m, M=1kg
-        <<: *JOINT_DEFAULT
         joint_type: 'fixed'
         figure: 'box'
         # The sizes of the cuboid in meters
-        width: 0.1
-        length: 0.1
-        height: 0.1
+        width: 0.01
+        length: 0.01
+        height: 0.01
         # visualization properties
         v_origin: # describe the visual origin
             v_x: 0    # x-axis
@@ -62,15 +61,15 @@ objects:
             v_pitch: 0    # pitch
             v_yaw: 0    # yaw
         # The mass in kg
-        mass: 1.0
+        mass: 0.001
         # The inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            ixx: 1
+            ixx: 1E-7
             ixy: 0
             ixz: 0
-            iyy: 1
+            iyy: 1E-7
             iyz: 0
-            izz: 1
+            izz: 1E-7
             xyz: "0 0 0"
             rpy: "0 0 0"
     wheel:
@@ -91,15 +90,15 @@ objects:
             v_pitch: 0    # pitch
             v_yaw: 0    # yaw
         # The wheel mass in kg
-        mass: 1.9175
+        mass: 1.22
         # The wheel inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            ixx: 0.0052108
-            ixy: 1.1934E-33
-            ixz: 2.4174E-19
-            iyy: 0.0052108
-            iyz: 1.5911E-17
-            izz: 0.0096226
+            ixx: 0.0036
+            ixy: 0
+            ixz: 0
+            iyy: 0.0036
+            iyz: 0
+            izz: 0.0068
             xyz: "0 0 0" #-2.7756E-17 0
             rpy: "0 0 0"
 
@@ -125,16 +124,16 @@ objects:
             v_pitch: 0    # pitch
             v_yaw: 0    # yaw
         # The pivot mass in kg
-        mass: 4.9241947653983
+        mass: 1.2
         # The pivot inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            ixx: 0.0145104445261292
-            ixy: -1.45819672606201E-17
-            ixz: -0.00428323224825852
-            iyy: 0.0147433430543042
-            iyz: -1.56090649818831E-17
-            izz: 0.00926970619031274
-            xyz: "-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"
+            ixx: 0.01
+            ixy: 0
+            ixz: 0
+            iyy: 0.01
+            iyz: 0
+            izz: 0.01
+            xyz: "-0.03 0 -0.04"
             rpy: "0 0 0"
     kart:
         # Inherits from the default joint properties
@@ -157,11 +156,40 @@ objects:
         mass: 29.552
         # The kart inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
         inertia:
-            ixx: 3.67
+            ixx: 3.674
             ixy: 0
-            ixz: -0.05
-            iyy: 4.66
+            ixz: -0.0473
+            iyy: 4.656
             iyz: 0
-            izz: 2.4
+            izz: 2.396
+            xyz: "0 0 0.34" # offset base_link - C o Mass  is 0.34
+            rpy: "0 0 0"
+    battery:
+        # Inherits from the default joint properties
+        <<: *JOINT_DEFAULT
+        joint_type: 'fixed'
+        figure: 'mesh'
+        # The sizes of the cuboid in meters
+        width: 0.32
+        length: 0.541
+        height: 0.275
+        # visualization properties
+        v_origin: # describe the visual origin
+            v_x: 0    # x-axis
+            v_y: 0    # y-axis
+            v_z: 0    # z-axis
+            v_roll: 0    # roll
+            v_pitch: 0    # pitch
+            v_yaw: 0    # yaw
+        # The battery mass in kg
+        mass: 55.0
+        # The battery inertial matrix in kg*m^2 [ixx, ixy, ixz, iyy, iyz, izz]
+        inertia:
+            ixx: 0.8143
+            ixy: 0
+            ixz: 0.0014
+            iyy: 1.696
+            iyz: 0
+            izz: 1.819
             xyz: "0 0 0"
             rpy: "0 0 0"

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="kart"
+    xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Package Path -->
+    <xacro:property name="package" value="$(find kart_description)"/>
+
+    <!-- Include Segment Macro -->
+    <xacro:include filename="${package}/urdf/base_segment.xacro"/>
+
+    <!-- Include Kart Parts -->
+
+    <xacro:include filename="${package}/urdf/kart_base.xacro"/>
+    <xacro:include filename="${package}/urdf/castor_wheel.xacro"/>
+    <xacro:include filename="${package}/urdf/battery.xacro"/>
+
+    <!-- Create Footprint and Base Link-->
+    <link name="base_footprint"/>
+    <xacro:segment parent="base_footprint" model="base" mesh="0" material="default">
+        <origin xyz="0 0 0.242" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0.0 0.0 1.0"/>
+    </xacro:segment>
+    <xacro:kart_base parent="base_link" joint_prefix="" link_prefix="">
+        <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+    </xacro:kart_base>
+    <!-- Include the wheels -->
+    <xacro:castor_wheel parent="base_link" joint_prefix="fr_" link_prefix="fr_">
+        <origin xyz="0.2675 -0.14775 0" rpy="0.0 0.0 0.0"/>
+    </xacro:castor_wheel>
+    <xacro:castor_wheel parent="base_link" joint_prefix="fl_" link_prefix="fl_">
+        <origin xyz="0.2675 0.14775 0" rpy="0.0 0.0 0.0"/>
+    </xacro:castor_wheel>
+    <xacro:castor_wheel parent="base_link" joint_prefix="rr_" link_prefix="rr_">
+        <origin xyz="-0.2675 -0.14775 0" rpy="0.0 0.0 0.0"/>
+    </xacro:castor_wheel>
+    <xacro:castor_wheel parent="base_link" joint_prefix="rl_" link_prefix="rl_">
+        <origin xyz="-0.2675 0.14775 0" rpy="0.0 0.0 0.0"/>
+    </xacro:castor_wheel>
+    <!-- Include the battery -->
+    <xacro:battery parent="base_link" joint_prefix="" link_prefix="">
+        <origin xyz="0 0 0.1565" rpy="0.0 0.0 0.0"/>
+    </xacro:battery>
+
+    <!-- Gazebo Plugin -->
+    <xacro:include filename="${package}/urdf/mobile_base_gazebo.xacro"/>
+    
+</robot>

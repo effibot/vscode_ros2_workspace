@@ -18,9 +18,9 @@
   <!-- Link Definition -->
   <link name="fr_pivot_link">
     <inertial>
-      <mass value="4.9241947653983"/>
-      <inertia ixx="0.0145104445261292" ixy="-1.45819672606201e-17" ixz="-0.00428323224825852" iyy="0.0147433430543042" iyz="-1.56090649818831e-17" izz="0.00926970619031274"/>
-      <origin rpy="0 0 0" xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"/>
+      <mass value="1.2"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.04"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -55,8 +55,8 @@
   <!-- Link Definition -->
   <link name="fr_wheel_link">
     <inertial>
-      <mass value="1.9175"/>
-      <inertia ixx="0.0052108" ixy="1.1934e-33" ixz="2.4174e-19" iyy="0.0052108" iyz="1.5911e-17" izz="0.0096226"/>
+      <mass value="1.22"/>
+      <inertia ixx="0.0036" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0068"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <!-- Geometry -->

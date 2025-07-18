@@ -70,7 +70,7 @@
 				material:=^|''
 				*origin *axis
 				model:=^|'base'
-				joint link parent">
+				parent">
 		<xacro:property name="props" value="${obj_props[model]}" />
 		<xacro:property name="II" value="${props['inertia']}" />
 		<xacro:property name="color" value="${materials[material]['color']}" />
@@ -80,17 +80,20 @@
 			<child link="${link_prefix}${model}_link" />
 			<xacro:insert_block name="origin" />
 			<xacro:insert_block name="axis" />
-			<!-- add bounds for the joint if present in the config file -->
-			<xacro:if value="${'bounds' in props.keys()}">
-				<limit lower="${props['bounds']['lower']*pi/180}"
-					upper="${props['bounds']['upper']*pi/180}" effort="${props['effort']}"
-					velocity="${props['velocity']}" />
+			<!-- If the joint isn't a fixed one add range and dynamic properties -->
+			<xacro:if value="${props['joint_type'] != 'fixed'}">
+				<!-- add bounds for the joint if present in the config file -->
+				<xacro:if value="${'bounds' in props.keys()}">
+					<limit lower="${props['bounds']['lower']*pi/180}"
+						upper="${props['bounds']['upper']*pi/180}" effort="${props['effort']}"
+						velocity="${props['velocity']}" />
+				</xacro:if>
+				<!-- If not, just add limits and dynamics factors -->
+				<xacro:if value="${'bounds' not in props.keys()}">
+					<limit effort="${props['effort']}" velocity="${props['velocity']}" />
+				</xacro:if>
+				<dynamics damping="${props['damping']}" friction="${props['friction']}" />
 			</xacro:if>
-			<!-- If not, just add limits and dynamics factors -->
-			<xacro:if value="${'bounds' not in props.keys()}">
-				<limit effort="${props['effort']}" velocity="${props['velocity']}" />
-			</xacro:if>
-			<dynamics damping="${props['damping']}" friction="${props['friction']}" />
 		</joint>
 		<!-- Link Definition -->
 		<link name="${link_prefix}${model}_link">

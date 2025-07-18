@@ -28,7 +28,7 @@ def generate_launch_description():
     )
 
     model_arg = DeclareLaunchArgument(
-        'model', default_value='base.urdf',
+        'model', default_value='kart.urdf',
         description='Name of the URDF description to load'
     )
 

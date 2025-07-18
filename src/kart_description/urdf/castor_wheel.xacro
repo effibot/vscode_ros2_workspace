@@ -12,14 +12,14 @@
     <xacro:macro name="castor_wheel" params="parent link_prefix:=^|'' joint_prefix:=^|''
                         *origin scale_factor:=^|1.0">
         <!-- PIVOT -->
-        <xacro:segment joint="pivot" link="pivot" parent="${parent}" model="pivot" material="metal" mesh="1">
+        <xacro:segment parent="${parent}" model="pivot" material="metal" mesh="1">
             <!-- This origin comes from the file where the macro will be expanded -->
             <xacro:insert_block name="origin"/>
             <!-- The rotation happens on the Z-axis -->
             <axis xyz="0.0 0.0 1.0"/>
         </xacro:segment>
         <!-- WHEEL -->
-        <xacro:segment joint="wheel" link="wheel" parent="${link_prefix}pivot_link" model="wheel" material="rubber" mesh="1">
+        <xacro:segment parent="${link_prefix}pivot_link" model="wheel" material="rubber" mesh="1">
             <!--
                     This origin is fixed and belongs to the pivotal joint.
                     To rotate the wheel around its own axis, we need to rotate
