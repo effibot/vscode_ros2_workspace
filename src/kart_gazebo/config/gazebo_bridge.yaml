@@ -1,0 +1,18 @@
+- ros_topic_name: "/cmd_vel"  # This is the ROS topic name for the command velocity
+  gz_topic_name: "/gazebo/kart/cmd_vel" # This is the Gazebo topic name for the command velocity
+  ros_type_name: "geometry_msgs/msg/Twist" # This is the ROS message type for the command velocity
+  gz_type_name: "gz.msgs.Twist" # This is the Gazebo message type for the command velocity
+  direction: ROS_TO_GZ  # Direction of the message flow, can be ROS_TO_GZ, GZ_TO_ROS or BIDIRECTIONAL
+
+- ros_topic_name: "/joint_states"  # This is the ROS topic name for the joint states
+  gz_topic_name: "/world/empty/model/kart/joint_states" # This is the Gazebo topic name for the joint states
+  ros_type_name: "sensor_msgs/msg/JointState" # This is the ROS message type for the joint states
+  gz_type_name: "gz.msgs.Model" # This is the Gazebo message type for the joint states
+  direction: GZ_TO_ROS  # Direction of the message flow, can be ROS_TO_GZ, GZ_TO_ROS or BIDIRECTIONAL
+
+- ros_topic_name: "/tf"
+  gz_topic_name: "/model/kart/tf" # This is the Gazebo topic name for the tf
+  ros_type_name: "tf2_msgs/msg/TFMessage" # This is the ROS message type for the tf
+  gz_type_name: "gz.msgs.Pose_V" # This is the Gazebo message type for the tf
+  direction: GZ_TO_ROS  # Direction of the message flow, can be ROS_TO_GZ, GZ_TO_ROS or BIDIRECTIONAL
+  

@@ -6,9 +6,10 @@
 <robot name="kart">
   <!-- Include Kart Parts -->
   <!-- Call the base macro 
+
     <link name="base_footprint"/>
     <xacro:kart_base parent="base_footprint" joint_prefix="" link_prefix="">
-        <origin xyz="0 0 0.3" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
     </xacro:kart_base>-->
   <!-- Include the wheels
     <xacro:include filename="${package}/urdf/castor_wheel.xacro"/>
@@ -32,7 +33,7 @@
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0 0 0.242"/>
     <axis xyz="0.0 0.0 1.0"/>
   </joint>
   <!-- Link Definition -->
@@ -73,8 +74,8 @@
   <link name="kart_link">
     <inertial>
       <mass value="29.552"/>
-      <inertia ixx="3.67" ixy="0" ixz="-0.05" iyy="4.66" iyz="0" izz="2.4"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="3.674" ixy="0" ixz="-0.0473" iyy="4.656" iyz="0" izz="2.396"/>
+      <origin rpy="0 0 0" xyz="0 0 0.34"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -110,9 +111,9 @@
   <!-- Link Definition -->
   <link name="fr_pivot_link">
     <inertial>
-      <mass value="4.9241947653983"/>
-      <inertia ixx="0.0145104445261292" ixy="-1.45819672606201e-17" ixz="-0.00428323224825852" iyy="0.0147433430543042" iyz="-1.56090649818831e-17" izz="0.00926970619031274"/>
-      <origin rpy="0 0 0" xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"/>
+      <mass value="1.2"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.04"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -147,8 +148,8 @@
   <!-- Link Definition -->
   <link name="fr_wheel_link">
     <inertial>
-      <mass value="1.9175"/>
-      <inertia ixx="0.0052108" ixy="1.1934e-33" ixz="2.4174e-19" iyy="0.0052108" iyz="1.5911e-17" izz="0.0096226"/>
+      <mass value="1.22"/>
+      <inertia ixx="0.0036" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0068"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <!-- Geometry -->
@@ -183,9 +184,9 @@
   <!-- Link Definition -->
   <link name="fl_pivot_link">
     <inertial>
-      <mass value="4.9241947653983"/>
-      <inertia ixx="0.0145104445261292" ixy="-1.45819672606201e-17" ixz="-0.00428323224825852" iyy="0.0147433430543042" iyz="-1.56090649818831e-17" izz="0.00926970619031274"/>
-      <origin rpy="0 0 0" xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"/>
+      <mass value="1.2"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.04"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -220,8 +221,8 @@
   <!-- Link Definition -->
   <link name="fl_wheel_link">
     <inertial>
-      <mass value="1.9175"/>
-      <inertia ixx="0.0052108" ixy="1.1934e-33" ixz="2.4174e-19" iyy="0.0052108" iyz="1.5911e-17" izz="0.0096226"/>
+      <mass value="1.22"/>
+      <inertia ixx="0.0036" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0068"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <!-- Geometry -->
@@ -256,9 +257,9 @@
   <!-- Link Definition -->
   <link name="rr_pivot_link">
     <inertial>
-      <mass value="4.9241947653983"/>
-      <inertia ixx="0.0145104445261292" ixy="-1.45819672606201e-17" ixz="-0.00428323224825852" iyy="0.0147433430543042" iyz="-1.56090649818831e-17" izz="0.00926970619031274"/>
-      <origin rpy="0 0 0" xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"/>
+      <mass value="1.2"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.04"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -293,8 +294,8 @@
   <!-- Link Definition -->
   <link name="rr_wheel_link">
     <inertial>
-      <mass value="1.9175"/>
-      <inertia ixx="0.0052108" ixy="1.1934e-33" ixz="2.4174e-19" iyy="0.0052108" iyz="1.5911e-17" izz="0.0096226"/>
+      <mass value="1.22"/>
+      <inertia ixx="0.0036" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0068"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <!-- Geometry -->
@@ -329,9 +330,9 @@
   <!-- Link Definition -->
   <link name="rl_pivot_link">
     <inertial>
-      <mass value="4.9241947653983"/>
-      <inertia ixx="0.0145104445261292" ixy="-1.45819672606201e-17" ixz="-0.00428323224825852" iyy="0.0147433430543042" iyz="-1.56090649818831e-17" izz="0.00926970619031274"/>
-      <origin rpy="0 0 0" xyz="-0.0209462809054473 -2.22044604925031E-16 -0.055673381595531"/>
+      <mass value="1.2"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+      <origin rpy="0 0 0" xyz="-0.03 0 -0.04"/>
     </inertial>
     <!-- Geometry -->
     <visual>
@@ -366,8 +367,8 @@
   <!-- Link Definition -->
   <link name="rl_wheel_link">
     <inertial>
-      <mass value="1.9175"/>
-      <inertia ixx="0.0052108" ixy="1.1934e-33" ixz="2.4174e-19" iyy="0.0052108" iyz="1.5911e-17" izz="0.0096226"/>
+      <mass value="1.22"/>
+      <inertia ixx="0.0036" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0068"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </inertial>
     <!-- Geometry -->
@@ -426,4 +427,28 @@
       </geometry>
     </collision>
   </link>
+  <!-- Edit Friction in simulation -->
+  <gazebo reference="base_link">
+    <mu1>0.000002</mu1>
+    <mu2>0.000002</mu2>
+  </gazebo>
+  <!-- Diff Drive Plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>fl_wheel_joint</left_joint>
+      <right_joint>fr_wheel_joint</right_joint>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+      <wheel_separation>0.29549</wheel_separation>
+      <wheel_radius>0.1</wheel_radius>
+      <max_acceleration>0.3</max_acceleration>
+    </plugin>
+  </gazebo>
+  <!-- Publish Joint State Info -->
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <update_rate>50</update_rate>
+      <publish_tf>true</publish_tf>
+    </plugin>
+  </gazebo>
 </robot>

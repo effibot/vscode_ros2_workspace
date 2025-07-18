@@ -39,6 +39,10 @@ def generate_launch_description():
         LaunchConfiguration('model')  # Replace with your URDF or Xacro file
     ])
 
+    # Add the configs path to the environment variable
+    gazebo_config_path = get_package_share_directory('kart_gazebo') + '/config'
+    config_file = os.path.join(gazebo_config_path, 'gazebo_bridge.yaml')
+
     world_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_path, 'launch', 'world.launch.py'),
@@ -102,6 +106,24 @@ def generate_launch_description():
         executable='joint_state_publisher_gui',
     )
 
+    # add description for the gz_bridge
+    gz_bridge_node = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+            "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
+            "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
+            "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V"
+        ],
+        output="screen",
+        parameters=[
+            {'use_sim_time': True},
+        ]
+    
+    )
+
     launchDescriptionObject = LaunchDescription()
 
     launchDescriptionObject.add_action(rviz_launch_arg)
@@ -111,6 +133,7 @@ def generate_launch_description():
     launchDescriptionObject.add_action(rviz_node)
     launchDescriptionObject.add_action(spawn_urdf_node)
     launchDescriptionObject.add_action(robot_state_publisher_node)
-    launchDescriptionObject.add_action(joint_state_publisher_gui_node)
+    #launchDescriptionObject.add_action(joint_state_publisher_gui_node)
+    launchDescriptionObject.add_action(gz_bridge_node)
 
     return launchDescriptionObject

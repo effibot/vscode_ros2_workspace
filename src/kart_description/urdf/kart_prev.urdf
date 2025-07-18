@@ -427,4 +427,28 @@
       </geometry>
     </collision>
   </link>
+  <!-- Edit Friction in simulation -->
+  <gazebo reference="base_link">
+    <mu1>0.000002</mu1>
+    <mu2>0.000002</mu2>
+  </gazebo>
+  <!-- Diff Drive Plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::system::DiffDrive">
+      <left_joint>fl_wheel_joint</left_joint>
+      <right_joint>fr_wheel_joint</right_joint>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+      <wheel_separation>0.29549</wheel_separation>
+      <wheel_radius>0.1</wheel_radius>
+      <max_acceleration>0.3</max_acceleration>
+    </plugin>
+  </gazebo>
+  <!-- Publish Joint State Info -->
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <update_rate>50</update_rate>
+      <publish_tf>true</publish_tf>
+    </plugin>
+  </gazebo>
 </robot>
