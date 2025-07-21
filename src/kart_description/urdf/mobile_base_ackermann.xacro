@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Edit Friction in simulation -->
+    <gazebo reference="base_link">
+        <mu1>0.000002</mu1>
+        <mu2>0.000002</mu2>
+    </gazebo>
+    <gazebo reference="fr_wheel_link">
+        <mu1>100.0</mu1>
+        <mu2>100.0</mu2>
+    </gazebo>
+    <gazebo reference="fl_wheel_link">
+        <mu1>100.0</mu1>
+        <mu2>100.0</mu2>
+    </gazebo>
+    <gazebo reference="rr_wheel_link">
+        <mu1>100.0</mu1>
+        <mu2>100.0</mu2>
+    </gazebo>
+    <gazebo reference="rl_wheel_link">
+        <mu1>100.0</mu1>
+        <mu2>100.0</mu2>
+    </gazebo>
+
+    <!-- AckermannSteering Plugin -->
+    <plugin
+      filename="gz-sim-ackermann-steering-system"
+      name="gz::sim::systems::AckermannSteering">
+      <left_joint>fl_wheel_joint</left_joint>
+      <left_joint>rl_wheel_joint</left_joint>
+      <right_joint>fr_wheel_joint</right_joint>
+      <right_joint>rr_wheel_joint</right_joint>
+      <left_steering_joint>fl_pivot_joint</left_steering_joint>
+      <right_steering_joint>fr_pivot_joint</right_steering_joint>
+      <kingpin_width>0.199</kingpin_width>
+      <steering_limit>0.4</steering_limit>
+      <wheel_base>.2</wheel_base>
+      <wheel_separation>.29549</wheel_separation>
+      <wheel_radius>0.1</wheel_radius>
+      <min_velocity>-10.0</min_velocity>
+      <max_velocity>10.0</max_velocity>
+      <min_acceleration>-10</min_acceleration>
+      <max_acceleration>10</max_acceleration>
+      <topic>/cmd_vel</topic>
+    </plugin>
+
+    <!-- Publish Joint State Info -->
+    <gazebo>
+        <plugin
+            filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <update_rate>50</update_rate>
+            <publish_tf>true</publish_tf>
+            <topic>joint_states</topic>
+        </plugin>
+    </gazebo>
+</robot>

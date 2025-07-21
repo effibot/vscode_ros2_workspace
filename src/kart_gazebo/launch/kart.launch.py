@@ -121,7 +121,6 @@ def generate_launch_description():
         parameters=[
             {'use_sim_time': True},
         ]
-    
     )
 
     launchDescriptionObject = LaunchDescription()

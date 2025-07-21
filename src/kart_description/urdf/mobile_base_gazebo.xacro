@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
     
     <!-- Edit Friction in simulation -->
     <gazebo reference="base_link">
@@ -19,6 +20,7 @@
             <wheel_separation>0.29549</wheel_separation>
             <wheel_radius>0.1</wheel_radius>
             <max_acceleration>0.3</max_acceleration>
+            <topic>/cmd_vel</topic>
         </plugin>
     </gazebo>
 
@@ -29,6 +31,7 @@
             name="gz::sim::systems::JointStatePublisher">
             <update_rate>50</update_rate>
             <publish_tf>true</publish_tf>
+            <topic>joint_states</topic>
         </plugin>
     </gazebo>
 </robot>
